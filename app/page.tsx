@@ -14,10 +14,10 @@ export default function Home() {
 
         {/* Center */}
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center space-x-5">
-          <span>Home</span>
-          <span>About Me</span>
-          <span>Projects</span>
-          <span>Certifications</span>
+          <span className="cursor-pointer">Home</span>
+          <span className="cursor-pointer">About Me</span>
+          <span className="cursor-pointer">Projects</span>
+          <span className="cursor-pointer">Certifications</span>
         </div>
 
         {/* Right */}

@@ -32,11 +32,11 @@ export function ModeToggle() {
       onClick={toggle}
       aria-label="Toggle theme"
       aria-pressed={isDark}
-      className="relative flex h-8 w-16 items-center rounded-full bg-gray-200 dark:bg-zinc-800 transition-colors"
+      className="relative flex h-8 w-16 items-center rounded-full bg-gray-200 dark:bg-zinc-800 transition-colors cursor-pointer"
     >
       <span
         className={[
-          "absolute left-1 flex h-6 w-6 items-center justify-center rounded-full cursor-pointer",
+          "absolute left-1 flex h-6 w-6 items-center justify-center rounded-full ",
           "bg-white dark:bg-black shadow-md",
           "transition-transform duration-300 will-change-transform",
           isDark ? "translate-x-8" : "translate-x-0",

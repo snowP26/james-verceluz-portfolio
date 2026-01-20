@@ -19,7 +19,6 @@ export function ModeToggle() {
     setTheme(isDark ? "light" : "dark");
   }, [isDark, setTheme]);
 
-  // Prevent incorrect initial state + layout shift
   if (!mounted) {
     return (
       <div className="h-8 w-16 rounded-full bg-gray-200 dark:bg-zinc-800" />

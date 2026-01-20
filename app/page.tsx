@@ -44,7 +44,7 @@ const TECH_STACK = [
   "vscode",
 ];
 
-// Easy to edit projects data
+// projects data
 const PROJECTS = [
   {
     title: "KILOS: Kabataan's Integrated Leadership and Organizational System",
@@ -611,7 +611,7 @@ export default function Home() {
 
             {/* Contact CTA */}
             <div className="flex flex-col justify-center space-y-6">
-              <div className="p-8 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+              <div className="p-8 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 bg-linear-to-br from-blue-500/10 to-purple-500/10">
                 <h3 className="text-2xl font-bold mb-4">
                   Let's Work Together
                 </h3>

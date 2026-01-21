@@ -1,6 +1,7 @@
 import { Project } from "@/lib/type";
 import Image from "next/image";
 
+
 type ProjectCardProps = {
   project: Project;
 };
@@ -15,6 +16,7 @@ export function ProjectCard({project}: ProjectCardProps ) {
     <div
       className="group rounded-2xl overflow-hidden border border-zinc-200/50 dark:border-zinc-700/50 bg-gray-200/70 dark:bg-zinc-900/70 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
     >
+
       <div className="relative h-48 overflow-hidden bg-linear-to-br from-blue-500 to-purple-600">
         {project.image ? (
           <Image

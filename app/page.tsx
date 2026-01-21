@@ -1,4 +1,3 @@
-
 "use client";
 
 import { ModeToggle } from "./components/mode-switch";
@@ -12,6 +11,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { Navbar } from "./components/navbar";
 
 const TECH_STACK = [
   "html5",
@@ -48,17 +48,19 @@ const TECH_STACK = [
 const PROJECTS = [
   {
     title: "KILOS: Kabataan's Integrated Leadership and Organizational System",
-    description: "A capstone all-in-one management platform for youth officials to manage the local youth officials' projects, ordinances, announcements, community feedback, and Facebook page through the Facebook GraphAPI. It streamlines internal content management while giving the public a centralized and transparent view of official updates.",
-  tech: ["Next.js", "Supabase", "Tailwind CSS", "Vercel", "Facebook API"],
+    description:
+      "A capstone all-in-one management platform for youth officials to manage the local youth officials' projects, ordinances, announcements, community feedback, and Facebook page through the Facebook GraphAPI. It streamlines internal content management while giving the public a centralized and transparent view of official updates.",
+    tech: ["Next.js", "Supabase", "Tailwind CSS", "Vercel", "Facebook API"],
     image: "/projects/kilos.png",
     github: "https://github.com/snowP26/KILOS-Capstone",
     live: "https://kilos-capstone.vercel.app/",
   },
   {
     title: "SkillBridge",
-    description: "A mobile application designed to help beginners enter a hobby by connecting them with experienced hobbyists who offer their services in exchange for payment. The platform allows users to post job requests, discover mentors, and learn hands-on from experts within the community.",
+    description:
+      "A mobile application designed to help beginners enter a hobby by connecting them with experienced hobbyists who offer their services in exchange for payment. The platform allows users to post job requests, discover mentors, and learn hands-on from experts within the community.",
     tech: ["Expo", "Firebase", "TypeScript", "Tailwind CSS"],
-    image: "/projects/taskapp.jpg",
+    image: null,
     github: "https://github.com/snowP26/SkillBridge",
     live: null,
   },
@@ -68,33 +70,35 @@ const PROJECTS = [
       "A dorm-finding web application that connects tenants to available rentals while giving landowners a dashboard to manage properties, listings, and tenant details in one place.",
     tech: ["Python", "Django", "Railway", "Bootstrap CSS"],
     image: "/projects/taskapp.jpg",
-    github: "https://github.com/snowP26/MoveIn", 
+    github: "https://github.com/snowP26/MoveIn",
     live: null,
   },
   {
     title: "TicTacToe",
-    description: "This is a simple yet fun implementation of the classic Tic Tac Toe game where you can challenge your friends. The game features a user-friendly interface and is designed to be engaging for players of all ages.",
+    description:
+      "This is a simple yet fun implementation of the classic Tic Tac Toe game where you can challenge your friends. The game features a user-friendly interface and is designed to be engaging for players of all ages.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image: "/projects/fitness.jpg",
+    image: null,
     github: "https://github.com/snowP26/TicTacToe",
     live: "https://snowp26.github.io/TicTacToe/",
   },
   {
     title: "Power-Me-Up",
-    description: "Turnbased game using the terminal, written in C. This system was created to practice web sockets between two computers.",
+    description:
+      "Turnbased game using the terminal, written in C. This system was created to practice web sockets between two computers.",
     tech: ["C"],
     github: "https://github.com/snowP26/Power-Me-Up",
-    live: null
+    live: null,
   },
   {
     title: "FullTank",
-    description: "This is app was the first ever application to be brainstormed together with a team. It was supposed to be a gas station locator to locate the cheapest gas within an area. Sadly, only few frontend pages were developed",
+    description:
+      "This is app was the first ever application to be brainstormed together with a team. It was supposed to be a gas station locator to locate the cheapest gas within an area. Sadly, only few frontend pages were developed",
     tech: ["Flutter", "Dart"],
     image: "/projects/fitness.jpg",
     github: "https://github.com/snowP26/full_tank",
-    live: null
+    live: null,
   },
-
 ];
 
 // Easy to edit certifications data
@@ -145,7 +149,8 @@ export default function Home() {
       showConfirmButton: true,
       confirmButtonText: "Close",
       customClass: {
-        popup: "rounded-xl bg-white dark:bg-zinc-900 text-black dark:text-white",
+        popup:
+          "rounded-xl bg-white dark:bg-zinc-900 text-black dark:text-white",
         title: "text-lg font-semibold",
         confirmButton:
           "rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-700",
@@ -179,58 +184,10 @@ export default function Home() {
     }
   }
 
-  function scroll_to(id: string) {
-    const element = document.getElementById(id);
-
-    element?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-
   return (
     <div className="min-h-screen">
       {/* Nav Bar */}
-      <div className="flex py-5 items-center px-6 sticky top-0 z-50 mt-4">
-        {/* Center */}
-        <nav className="absolute left-1/2 -translate-x-1/2 flex items-center gap-8 rounded-full px-6 py-2 bg-gray-200/70 dark:bg-zinc-900/70 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-700/50 shadow-sm">
-          <button
-            className="text-md font-medium text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            onClick={() => scroll_to("home")}
-          >
-            Home
-          </button>
-          <button
-            className="text-md font-medium text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            onClick={() => scroll_to("about-me")}
-          >
-            About Me
-          </button>
-          <button
-            className="text-md font-medium text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            onClick={() => scroll_to("projects")}
-          >
-            Projects
-          </button>
-          <button
-            className="text-md font-medium text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            onClick={() => scroll_to("certifications")}
-          >
-            Certifications
-          </button>
-          <button
-            className="text-md font-medium text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            onClick={() => scroll_to("contact-me")}
-          >
-            Contact me
-          </button>
-        </nav>
-
-        {/* Right */}
-        <div className="ml-auto flex items-center">
-          <ModeToggle />
-        </div>
-      </div>
+      <Navbar />
       {/* Nav Bar end */}
 
       {/* Home div */}
@@ -238,6 +195,7 @@ export default function Home() {
         className="flex flex-col items-center justify-center text-center py-20 h-screen"
         id="home"
       >
+
         <div className="text-4xl font-semibold tracking-tight transition-all animate-in fade-in duration-500">
           <span>Hey, I&apos;m </span>
           <span className="text-blue-700 dark:text-blue-400 ">
@@ -280,7 +238,7 @@ export default function Home() {
               <div className="relative w-72 h-100 rounded-2xl overflow-hidden border-4 border-blue-700 dark:border-blue-400 shadow-2xl">
                 <Image
                   src="/profile-pic.jpg" // Add your photo path here
-                  alt="James Gabriel Verceluz"
+                  alt="James Verceluz"
                   fill
                   className="object-cover"
                 />
@@ -292,8 +250,8 @@ export default function Home() {
               <p className="text-lg leading-relaxed text-black/80 dark:text-white/80">
                 I'm a passionate full-stack developer based in Naga City,
                 Philippines, with expertise in building modern web and mobile
-                applications. I specialize in creating user-friendly,
-                performant solutions using cutting-edge technologies.
+                applications. I specialize in creating user-friendly, performant
+                solutions using cutting-edge technologies.
               </p>
               <p className="text-lg leading-relaxed text-black/80 dark:text-white/80">
                 With a strong foundation in both front-end and back-end
@@ -612,13 +570,11 @@ export default function Home() {
             {/* Contact CTA */}
             <div className="flex flex-col justify-center space-y-6">
               <div className="p-8 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 bg-linear-to-br from-blue-500/10 to-purple-500/10">
-                <h3 className="text-2xl font-bold mb-4">
-                  Let's Work Together
-                </h3>
+                <h3 className="text-2xl font-bold mb-4">Let's Work Together</h3>
                 <p className="text-black/70 dark:text-white/70 mb-6 leading-relaxed">
                   I'm always open to discussing new projects, creative ideas, or
-                  opportunities to be part of your vision. Feel free to reach out
-                  through any of the channels listed.
+                  opportunities to be part of your vision. Feel free to reach
+                  out through any of the channels listed.
                 </p>
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=jamesgabriel.verceluz@gmail.com"
@@ -640,13 +596,14 @@ export default function Home() {
           <div className="grid gap-10 md:grid-cols-3">
             {/* Brand */}
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-blue-700 dark:text-blue-400">James Gabriel Verceluz</h2>
+              <h2 className="text-xl font-bold tracking-tight text-blue-700 dark:text-blue-400">
+                James Verceluz
+              </h2>
               <p className="mt-3 text-sm text-black/70 dark:text-white/70 leading-relaxed">
-                Focused on continuous learning and building purposeful software that balances functionality, clarity, and long-term growth.
+                Focused on continuous learning and building purposeful software
+                that balances functionality, clarity, and long-term growth.
               </p>
             </div>
-
-
 
             {/* Contact */}
             <div className="md:justify-self-end ">
@@ -656,15 +613,17 @@ export default function Home() {
 
               <div className="mt-4 space-y-3 text-sm text-black/80 dark:text-white/80">
                 <p>
-                  <span className="font-bold">Location:</span>{" "}
-                  Naga City, Camarines Sur, Philippines
+                  <span className="font-bold">Location:</span> Naga City,
+                  Camarines Sur, Philippines
                 </p>
 
                 <p>
                   <span className="font-bold">Email:</span>{" "}
                   <a
                     className="relative inline-block text-black/80 dark:text-white/80 transition-colors duration-300 hover:text-black dark:hover:text-white after:absolute after:left-0 after:-bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 cursor-pointer"
-                    onClick={async () => await copyToClipboard("jamesgabriel.verceluz@gmail.com")}
+                    onClick={async () =>
+                      await copyToClipboard("jamesgabriel.verceluz@gmail.com")
+                    }
                   >
                     jamesgabriel.verceluz@gmail.com
                   </a>
@@ -673,15 +632,15 @@ export default function Home() {
                 <p>
                   <span className="font-bold">Phone:</span>{" "}
                   <a
-                    onClick={async () => await copyToClipboard("+63 993 950 7116")}
+                    onClick={async () =>
+                      await copyToClipboard("+63 993 950 7116")
+                    }
                     className="relative inline-block text-black/80 dark:text-white/80 transition-colors duration-300 hover:text-black dark:hover:text-white after:absolute after:left-0 after:-bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 cursor-pointer"
-
                   >
                     (+63) 993 950 7116
                   </a>
                 </p>
               </div>
-
             </div>
             {/* Socials */}
             <div className="md:justify-self-center ">
@@ -748,17 +707,18 @@ export default function Home() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-10 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between
-                    border-t border-black/10 dark:border-white/10 pt-6 text-xs text-black/60 dark:text-white/60">
-            <p>© {new Date().getFullYear()} James Gabriel Verceluz. All rights reserved.</p>
-            <p className="flex gap-4">
-
+          <div
+            className="mt-10 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between
+                    border-t border-black/10 dark:border-white/10 pt-6 text-xs text-black/60 dark:text-white/60"
+          >
+            <p>
+              © {new Date().getFullYear()} James Verceluz. All rights
+              reserved.
             </p>
+            <p className="flex gap-4"></p>
           </div>
         </div>
       </footer>
-
-
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { ModeToggle } from "./components/mode-switch";
 import {
   Marquee,
   MarqueeContent,
@@ -12,6 +11,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { Navbar } from "./components/navbar";
+import { ProjectCard } from "./components/project-card";
 
 const TECH_STACK = [
   "html5",
@@ -50,7 +50,7 @@ const PROJECTS = [
     title: "KILOS: Kabataan's Integrated Leadership and Organizational System",
     description:
       "A capstone all-in-one management platform for youth officials to manage the local youth officials' projects, ordinances, announcements, community feedback, and Facebook page through the Facebook GraphAPI. It streamlines internal content management while giving the public a centralized and transparent view of official updates.",
-    tech: ["Next.js", "Supabase", "Tailwind CSS", "Vercel", "Facebook API"],
+    tech: ["nextjs", "Vercel", "Supabase", "tailwindcss"],
     image: "/projects/kilos.png",
     github: "https://github.com/snowP26/KILOS-Capstone",
     live: "https://kilos-capstone.vercel.app/",
@@ -68,7 +68,7 @@ const PROJECTS = [
     title: "MoveIn",
     description:
       "A dorm-finding web application that connects tenants to available rentals while giving landowners a dashboard to manage properties, listings, and tenant details in one place.",
-    tech: ["Python", "Django", "Railway", "Bootstrap CSS"],
+    tech: ["Python", "Django", "HTML", "Railway", "Bootstrap CSS"],
     image: "/projects/taskapp.jpg",
     github: "https://github.com/snowP26/MoveIn",
     live: null,
@@ -136,6 +136,7 @@ export default function Home() {
     return null;
   }
 
+
   function showViberQR() {
     Swal.fire({
       title: "Connect on Viber",
@@ -195,7 +196,6 @@ export default function Home() {
         className="flex flex-col items-center justify-center text-center py-20 h-screen"
         id="home"
       >
-
         <div className="text-4xl font-semibold tracking-tight transition-all animate-in fade-in duration-500">
           <span>Hey, I&apos;m </span>
           <span className="text-blue-700 dark:text-blue-400 ">
@@ -307,63 +307,7 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS.map((project, index) => (
-              <div
-                key={index}
-                className="group rounded-2xl overflow-hidden border border-zinc-200/50 dark:border-zinc-700/50 bg-gray-200/70 dark:bg-zinc-900/70 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="relative h-48 overflow-hidden bg-linear-to-br from-blue-500 to-purple-600">
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} preview`}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      priority={index === 0}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold opacity-20">
-                      {project.title.charAt(0)}
-                    </div>
-                  )}
-                </div>
-                <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <p className="text-sm text-black/70 dark:text-white/70 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4 pt-2">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      View Code →
-                    </a>
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                      >
-                        Live Demo →
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <ProjectCard key={index} project={project} />
             ))}
           </div>
         </div>
@@ -712,8 +656,7 @@ export default function Home() {
                     border-t border-black/10 dark:border-white/10 pt-6 text-xs text-black/60 dark:text-white/60"
           >
             <p>
-              © {new Date().getFullYear()} James Verceluz. All rights
-              reserved.
+              © {new Date().getFullYear()} James Verceluz. All rights reserved.
             </p>
             <p className="flex gap-4"></p>
           </div>

@@ -21,7 +21,15 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   title: "James Gabriel Verceluz",
   description: "Portfolio website of James Gabriel Verceluz",
+  icons: {
+    icon: [
+      { url: "/james_verceluz.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
+
 
 export default function RootLayout({
   children,

@@ -23,12 +23,19 @@ export const metadata: Metadata = {
   description: "Portfolio website of James Gabriel Verceluz",
   icons: {
     icon: [
-      { url: "/james_verceluz.png", type: "image/png" },
-      { url: "/favicon.ico" },
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
     ],
-    shortcut: "/favicon.ico",
   },
 };
+
+
 
 
 export default function RootLayout({

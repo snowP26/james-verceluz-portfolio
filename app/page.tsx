@@ -50,7 +50,7 @@ const PROJECTS = [
     title: "KILOS: Kabataan's Integrated Leadership and Organizational System",
     description:
       "A capstone all-in-one management platform for youth officials to manage the local youth officials' projects, ordinances, announcements, community feedback, and Facebook page through the Facebook GraphAPI. It streamlines internal content management while giving the public a centralized and transparent view of official updates.",
-    tech: ["nextjs", "Vercel", "Supabase", "tailwindcss"],
+    tech: ["nextjs", "Vercel", "Supabase", "tailwindcss", "typescript"],
     image: "/projects/kilos.png",
     github: "https://github.com/snowP26/KILOS-Capstone",
     live: "https://kilos-capstone.vercel.app/",

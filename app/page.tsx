@@ -12,6 +12,8 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import { Navbar } from "./components/navbar";
 import { ProjectCard } from "./components/project-card";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
+import LiquidEther from "@/components/LiquidEther"
 
 const TECH_STACK = [
   "html5",
@@ -101,28 +103,13 @@ const PROJECTS = [
   },
 ];
 
-// Easy to edit certifications data
 const CERTIFICATIONS = [
   {
-    title: "AWS Certified Developer",
-    issuer: "Amazon Web Services",
+    title: "Smartbooks And Power BI Smartbooks Advance With Analytics",
+    issuer: "FIT Academy",
     date: "2024",
     image: "/certs/aws.jpg",
     link: "https://aws.amazon.com/certification/",
-  },
-  {
-    title: "Meta Front-End Developer Professional Certificate",
-    issuer: "Meta",
-    date: "2023",
-    image: "/certs/meta.jpg",
-    link: "https://www.coursera.org/professional-certificates/meta-front-end-developer",
-  },
-  {
-    title: "Full-Stack Web Development",
-    issuer: "Le Wagon",
-    date: "2023",
-    image: "/certs/lewagon.jpg",
-    link: "https://www.lewagon.com/",
   },
 ];
 
@@ -186,27 +173,50 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       {/* Nav Bar */}
       <Navbar />
       {/* Nav Bar end */}
 
       {/* Home div */}
       <div
-        className="flex flex-col items-center justify-center text-center py-20 h-screen"
+        className="relative flex flex-col items-center justify-center text-center h-screen overflow-hidden -mt-20"
         id="home"
       >
-        <div className="text-4xl font-semibold tracking-tight transition-all animate-in fade-in duration-500">
+        {/* Background */} 
+        <div className="group w-50 h-50 rounded-full overflow-hidden mb-5 shadow-2xl shadow-accent border-2 border-accent">
+
+          <Image
+            src="/james_verceluz_grin.png"
+            alt="James Verceluz Grin"
+            className="block group-hover:hidden"
+            width={200}
+            height={200}
+          />
+
+          <Image
+            src="/james_verceluz_smile.png"
+            alt="James Verceluz Smile"
+            className="hidden group-hover:block"
+            width={200}
+            height={200}
+          />
+        </div>
+
+        {/* Foreground content */}
+        <div className="relative z-10 text-4xl font-semibold tracking-tight transition-all animate-in fade-in duration-500">
           <span>Hey, I&apos;m </span>
-          <span className="text-blue-700 dark:text-blue-400 ">
+          <span className="text-blue-700 dark:text-blue-400">
             James Verceluz!
           </span>
         </div>
-        <p className="mt-4 text-xl opacity-80 animate-in fade-in duration-1000">
+
+        <p className="relative z-10 mt-4 text-xl opacity-80 animate-in fade-in duration-1000">
           A full-stack developer building clean, scalable web and mobile
           applications.
         </p>
-        <Marquee className="mt-10 w-full max-w-3xl p-3 rounded-2xl">
+
+        <Marquee className="relative z-10 mt-10 w-full max-w-3xl p-3 rounded-2xl">
           <MarqueeContent>
             {TECH_STACK.map((tech) => (
               <MarqueeItem key={tech} className="mx-6 flex items-center">
@@ -235,14 +245,18 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Photo Section */}
             <div className="flex justify-center">
-              <div className="relative w-72 h-100 rounded-2xl overflow-hidden border-4 border-blue-700 dark:border-blue-400 shadow-2xl">
+              <BackgroundGradient
+                className="relative w-72 h-100 rounded-2xl overflow-hidden shadow-2xl"
+                animate={true}
+              >
+
                 <Image
-                  src="/profile-pic.jpg" // Add your photo path here
+                  src="/profile-pic.jpg"
                   alt="James Verceluz"
                   fill
                   className="object-cover"
                 />
-              </div>
+              </BackgroundGradient>
             </div>
 
             {/* Text Section */}
@@ -323,7 +337,7 @@ export default function Home() {
             Certifications
           </h2>
           <div className="space-y-6">
-            {CERTIFICATIONS.map((cert, index) => (
+            {/* {CERTIFICATIONS.map((cert, index) => (
               <div
                 key={index}
                 className="group p-6 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 bg-gray-200/70 dark:bg-zinc-900/70 shadow-md hover:shadow-xl transition-all duration-300 hover:border-blue-500 dark:hover:border-blue-400"
@@ -345,7 +359,7 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@ export function Navbar() {
   }, [activeSection]);
 
   return (
-    <div className="flex min-h-16 items-center px-6 sticky top-0 z-50 mt-4">
+    <div className="bg-transparent flex min-h-16 items-center px-6 sticky top-0 z-50">
       {/* Center */}
       <nav
         ref={containerRef}

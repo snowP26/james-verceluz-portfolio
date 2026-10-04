@@ -3,6 +3,7 @@ import { Archivo, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { CONTACT, PROFILE } from "@/lib/data";
+import { Analytics } from "@vercel/analytics/next"
 
 /** Display — industrial grotesque, set tight and uppercase for the plate lettering. */
 const archivo = Archivo({
@@ -109,8 +110,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Gates the scroll-reveal styles. Without it the reveal observer
-            could never run and the content would stay hidden. */}
+        <Analytics />
         <script
           dangerouslySetInnerHTML={{
             __html: `document.documentElement.setAttribute('data-js','')`,

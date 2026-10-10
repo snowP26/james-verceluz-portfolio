@@ -13,7 +13,7 @@ export const PROFILE = {
   shortName: "James Verceluz",
   discipline: "AI Developer",
   location: "Naga City, Camarines Sur, Philippines",
-  revision: "2026.07",
+  revision: "2026.10",
   lead: "I ship production software across Next.js and Ruby on Rails. I own features from requirements through testing to deploy.",
   bio: [
     "I build web applications end to end. Most recently that meant a Shopify storefront for a Philippine streetwear brand that now takes real orders, and an internal dashboard at Nueca Technologies that gave the team one place to track SMS logs across every system they ran.",

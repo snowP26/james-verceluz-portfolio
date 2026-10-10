@@ -33,7 +33,7 @@ export const CONTACT = {
     "https://mail.google.com/mail/?view=cm&fs=1&to=jamesgabriel.verceluz@gmail.com",
 } as const;
 
-export const RESUME_PATH = "/James_Verceluz_Resume.pdf";
+export const RESUME_PATH = "/Resume.pdf";
 
 export const SECTIONS: Section[] = [
   { id: "index", index: "00", label: "Index" },

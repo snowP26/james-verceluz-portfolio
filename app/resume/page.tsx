@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/resume" },
 };
 
-const FILE_NAME = "James_Verceluz_Resume.pdf";
+const FILE_NAME = "Resume.pdf";
 
 const summary = [
   { k: "Roles", v: `${EXPERIENCE.length} · Rails internship, freelance` },

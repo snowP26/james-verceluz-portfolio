@@ -112,7 +112,7 @@ export const PROJECTS: Project[] = [
       "Cloudflare",
       "Claude Code",
     ],
-    image: null,
+    image: "/projects/Entitled.png",
     github: null,
     live: null,
   },

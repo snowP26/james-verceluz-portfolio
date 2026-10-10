@@ -114,7 +114,7 @@ export default function Home() {
                       className="annot inline-flex items-center gap-2.5 border border-rule px-5 py-4 text-ink-2 transition-colors hover:border-accent-edge hover:text-accent"
                     >
                       <ArrowDownToLine className="size-3.5" strokeWidth={1.75} />
-                      Resume
+                      Resumé
                     </Link>
                   </div>
                 </div>
@@ -221,11 +221,11 @@ export default function Home() {
                       {[
                         {
                           k: "Now",
-                          v: "Front end for Stadiops, a booking platform for a Canadian client",
+                          v: "Back end for a Japanese Client for Entitled, a web based music guessing game.",
                         },
                         {
                           k: "Built",
-                          v: "An internal SMS log dashboard at Nueca Technologies, plus the Rails endpoints behind it",
+                          v: "An internal SMS log dashboard at Nueca Technologies, StadiOps booking SaaS frontend, and Groovy's E-commerce website",
                         },
                         {
                           k: "Studied",
@@ -516,7 +516,7 @@ export default function Home() {
                         className="annot inline-flex items-center gap-2.5 border border-rule px-5 py-4 text-ink-2 transition-colors hover:border-accent-edge hover:text-accent"
                       >
                         <ArrowDownToLine className="size-3.5" strokeWidth={1.75} />
-                        Resume
+                        Resumé
                       </Link>
                     </div>
                   </div>

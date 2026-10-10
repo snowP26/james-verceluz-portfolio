@@ -13,8 +13,8 @@ import {
 } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Resume",
-  description: `Resume of ${PROFILE.firstName} ${PROFILE.lastName} — ${PROFILE.discipline} in ${PROFILE.location}.`,
+  title: "Resumé",
+  description: `Resumé of ${PROFILE.firstName} ${PROFILE.lastName} — ${PROFILE.discipline} in ${PROFILE.location}.`,
   alternates: { canonical: "/resume" },
 };
 

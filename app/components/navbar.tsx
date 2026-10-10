@@ -85,7 +85,7 @@ export function Navbar({ activeId }: { activeId: string }) {
               className="annot-sm hidden items-center gap-2 border border-rule px-3.5 py-2.5 text-ink-2 transition-colors hover:border-accent-edge hover:text-accent sm:inline-flex"
             >
               <ArrowDownToLine className="size-3.5" strokeWidth={1.75} />
-              Resume
+              Resumé
             </Link>
             <ModeToggle />
             <button
@@ -153,7 +153,7 @@ export function Navbar({ activeId }: { activeId: string }) {
                 className="annot mt-8 flex items-center justify-center gap-2.5 bg-accent px-5 py-4 text-accent-ink"
               >
                 <ArrowDownToLine className="size-4" strokeWidth={1.75} />
-                Resume
+                Resumé
               </Link>
             </nav>
           </div>

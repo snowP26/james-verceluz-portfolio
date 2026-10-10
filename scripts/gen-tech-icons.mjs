@@ -1,7 +1,10 @@
 import fs from "fs";
 
-const SRC = "/Users/james/portfolio/node_modules/tech-stack-icons/dist/index.js";
-const OUT = "/Users/james/portfolio/lib/tech-icons.generated.ts";
+const SRC = new URL(
+  "../node_modules/tech-stack-icons/dist/index.js",
+  import.meta.url,
+).pathname;
+const OUT = new URL("../lib/tech-icons.generated.ts", import.meta.url).pathname;
 
 // Exact label (as written in lib/data.ts) → icon key in tech-stack-icons.
 // Labels with no entry render as text only, which is the correct fallback.
@@ -35,15 +38,20 @@ const MAP = {
   Git: "git",
   Postman: "postman",
   "Chakra UI": "chakraui",
+  NestJs: "nestjs",
+  "NestJS": "nestjs",
+  Cloudflare: "cloudflare",
+  ExpressJS: "expressjs",
+  Laravel: "laravel",
 };
 
 const src = fs.readFileSync(SRC, "utf8");
 
 /** Pull one variant's SVG string out of the bundled registry. */
 function extract(key, variant) {
-  const start = src.indexOf(`${key}:{svg:{`);
+  const start = src.indexOf(`${key}:{`);
   if (start === -1) return null;
-  const chunk = src.slice(start, start + 60000);
+  const chunk = src.slice(start, start + 120000);
   const at = chunk.indexOf(`${variant}:'`);
   if (at === -1) return null;
   const from = at + variant.length + 2;

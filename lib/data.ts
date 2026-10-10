@@ -11,14 +11,13 @@ export const PROFILE = {
   firstName: "James Gabriel",
   lastName: "Verceluz",
   shortName: "James Verceluz",
-  discipline: "Full-stack developer",
+  discipline: "AI Developer",
   location: "Naga City, Camarines Sur, Philippines",
-  /** Shown in the title block. Keep in sync with the resume PDF. */
   revision: "2026.07",
-  lead: "I ship production software across Next.js front ends and Ruby on Rails back ends — and own features from requirements through testing to deploy.",
+  lead: "I ship production software across Next.js and Ruby on Rails. I own features from requirements through testing to deploy.",
   bio: [
     "I build web applications end to end. Most recently that meant a Shopify storefront for a Philippine streetwear brand that now takes real orders, and an internal dashboard at Nueca Technologies that gave the team one place to track SMS logs across every system they ran.",
-    "I work best when I own the whole path — sitting with a client to pin down what they actually need, building it, testing it, and putting it in front of users. Right now I'm building the front end of Stadiops, a booking platform for a Canadian client, and taking on freelance work alongside it.",
+    "I work best when I own the full product path, from clarifying the real need to building, testing, and shipping in front of users. I wrapped up my work on Stadiops in September and continue taking on freelance projects alongside it.",
   ],
 } as const;
 
@@ -53,7 +52,7 @@ export const MEASURES = [
     label: "groovyph.com",
     note: "Storefront taking real orders",
   },
-  { value: "2", label: "Client projects", note: "Philippines · Canada" },
+  { value: "3", label: "Client projects", note: "Philippines · Canada · Japan" },
   {
     value: "Company-wide",
     label: "Internal SMS dashboard",
@@ -94,29 +93,54 @@ export const EXPERIENCE: Role[] = [
 
 export const PROJECTS: Project[] = [
   {
-    slug: "stadiops",
-    name: "Stadiops",
-    kind: "Sports training booking SaaS",
-    role: "Frontend Developer",
-    start: "2026.04",
+    slug: "entitled",
+    name: "Entitled",
+    kind: "Web Music Guessing Game",
+    role: "AI Backend Developer",
+    start: "2026.08",
     end: null,
     status: "building",
     summary:
-      "Booking and scheduling platform for a Canadian client serving private-training sports teams.",
+      "A skribbl.io inspired music guessing game.",
     points: [
-      "Building the front end in Next.js with TanStack Query handling data fetching and server state.",
-      "Covering booking and scheduling flows with end-to-end tests in Playwright.",
+      "Developing API endpoints and WebSockets powered by NestJs.",
+      "Responsible for the DevOps tasks through Cloudflare and Github Actions",
     ],
     stack: [
-      "Next.js",
+      "NestJs",
       "TypeScript",
-      "TanStack Query",
-      "Playwright",
+      "Cloudflare",
       "Claude Code",
     ],
     image: null,
     github: null,
     live: null,
+  },
+  {
+    slug: "stadiops",
+    name: "StadiOps",
+    kind: "Sports training booking SaaS",
+    role: "AI Frontend Developer",
+    start: "2026.04",
+    end: "2026.10",
+    status: "live",
+    summary:
+      "Booking and scheduling platform for a Canadian client serving private-training sports teams.",
+    points: [
+      "Built the front end in Next.js with TanStack Query handling data fetching and server state.",
+      "Covering booking and scheduling flows with end-to-end tests in Vitest.",
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "TanStack Query",
+      "Vitest",
+      "Claude Code",
+    ],
+    image: "/projects/stadiops.png",
+    github: null,
+    live: "https://www.stadiops.com/",
+    liveLabel: "StadiOps.com"
   },
   {
     slug: "groovy",
@@ -133,7 +157,7 @@ export const PROJECTS: Project[] = [
       "Configured the Shopify side and wired product, cart, and checkout flows through Shopify's APIs.",
     ],
     stack: ["Next.js", "React", "Shopify", "TypeScript"],
-    image: null,
+    image: "/projects/groovy.png",
     github: null,
     live: "https://groovyph.com",
     liveLabel: "groovyph.com",
@@ -209,7 +233,7 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     label: "Backend",
-    items: ["Ruby on Rails", "REST API design", "Shopify"],
+    items: ["Ruby on Rails", "NestJS", "ExpressJS", "REST API design", "Shopify"],
   },
   {
     label: "Databases",
@@ -217,7 +241,7 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     label: "Testing & tools",
-    items: ["RSpec", "Playwright", "Git", "Postman", "Vercel"],
+    items: ["RSpec", "Git", "Postman", "Vercel"],
   },
 ];
 
@@ -231,6 +255,10 @@ export const EDUCATION = {
 } as const;
 
 export const CERTIFICATIONS: Credential[] = [
+  {
+    title: "Google AI Professional Certificate",
+    issuer: "Coursera",
+  },
   {
     title: "TOPCIT — Level 2 Proficiency",
     issuer: "Test of Practical Competency in ICT",

@@ -1,25 +1,25 @@
 import type { ReactNode } from "react";
 
 type SectionHeadProps = {
-  index: string;
   title: string;
-  /** Right-aligned annotation — a count, a date span, a status. */
+  /** Right-aligned annotation: a count, a date, a status. */
   meta?: ReactNode;
+  /** The resumé page's head is its h1; every section on the home page is an h2. */
+  as?: "h1" | "h2";
 };
 
-/**
- * A callout on the sheet: numbered index, a rule drawn to the page edge,
- * then the title. The numbering is real — sections are read in order.
- */
-export function SectionHead({ index, title, meta }: SectionHeadProps) {
+/** A ledger page's top rule with a silk bookmark hanging from it. */
+export function SectionHead({ title, meta, as: Heading = "h2" }: SectionHeadProps) {
   return (
-    <header className="mb-10 sm:mb-14">
-      <div className="flex items-center gap-4">
-        <span className="annot text-accent tabular-nums">{index}</span>
-        <span aria-hidden className="h-px flex-1 bg-rule" />
-        {meta ? <span className="annot text-ink-3">{meta}</span> : null}
+    <header className="relative mb-10 border-t border-rule-strong/70 pt-6 sm:mb-14">
+      <span
+        aria-hidden
+        className="absolute -top-px left-0 h-12 w-4 bg-accent [clip-path:polygon(0_0,100%_0,100%_100%,50%_78%,0_100%)]"
+      />
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 pl-9">
+        <Heading className="display-md text-accent">{title}</Heading>
+        {meta ? <p className="annot text-ink-3">{meta}</p> : null}
       </div>
-      <h2 className="display-md mt-4 text-ink">{title}</h2>
     </header>
   );
 }

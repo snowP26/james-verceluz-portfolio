@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { useCallback, useRef, type ReactNode } from "react";
+import { CONTACT } from "@/lib/data";
 
 type QRDialogProps = {
   /** Contents of the trigger button. */
@@ -65,8 +66,14 @@ export function QRDialog({ children, triggerClassName }: QRDialogProps) {
           </div>
 
           <p className="annot-sm mt-5 text-center text-ink-3">
-            Open Viber → scan
+            Open Viber, then scan
           </p>
+          <a
+            href={CONTACT.viber}
+            className="annot mt-4 flex min-h-11 items-center justify-center border border-rule text-ink-2 transition-colors hover:border-accent-edge hover:text-accent"
+          >
+            On this phone? Open in Viber
+          </a>
         </div>
       </dialog>
     </>

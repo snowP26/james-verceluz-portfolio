@@ -18,6 +18,8 @@ export type Role = {
 
 export type Project = {
   slug: string;
+  /** Where the work went: the client's country or city, stamped on the card. */
+  place: string;
   name: string;
   kind: string;
   role: string;
@@ -28,6 +30,8 @@ export type Project = {
   points: string[];
   stack: string[];
   image?: string | null;
+  /** What the screenshot shows, for screen readers. */
+  imageAlt?: string;
   github?: string | null;
   live?: string | null;
   liveLabel?: string | null;
@@ -55,6 +59,5 @@ export type Credential = {
 
 export type Section = {
   id: string;
-  index: string;
   label: string;
 };

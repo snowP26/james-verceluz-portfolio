@@ -1,60 +1,33 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
 /* ───────────────────────────────────────────────────────────
-   Tokens — a drafting sheet. Ink on paper, hairline rules,
-   one cobalt accent spent only where something is actionable.
+   Tokens: a provenance record. Archival buff paper, one red
+   silk ribbon for custody, unwoven gray thread for what is
+   still in progress, ledger-taupe hairlines.
    ─────────────────────────────────────────────────────────── */
 
 :root {
-  --paper: #f6f7f8;
-  --paper-raised: #ffffff;
-  --paper-sunk: #eceef1;
+  --paper: #ece3cf;
+  --paper-raised: #f5efe2;
+  --paper-sunk: #e2d7bf;
 
-  --ink: #10151c;
-  --ink-2: #4c5666;
-  /* Quietest tier still clears 4.5:1 on --paper — these carry real labels. */
-  --ink-3: #666f7d;
+  --ink: #2a241c;
+  --ink-2: #4b4235;
+  /* Quietest tier still clears 4.5:1 on --paper: these carry real labels. */
+  --ink-3: #61574a;
 
-  --rule: #dde1e7;
-  --rule-strong: #bfc6d0;
+  --rule: #cdbf9f;
+  --rule-strong: #8f826d;
 
-  --accent: #2347e8;
-  --accent-ink: #ffffff;
-  --accent-soft: rgb(35 71 232 / 0.07);
-  --accent-edge: rgb(35 71 232 / 0.28);
+  /* The ribbon: custody line, display type, and every action. */
+  --accent: #a3201b;
+  --accent-ink: #f7f0e1;
+  --accent-soft: rgb(163 32 27 / 0.08);
+  --accent-edge: rgb(163 32 27 / 0.42);
 
-  --live: #12864c;
-
-  --grid-minor: rgb(16 21 28 / 0.028);
-  --grid-major: rgb(16 21 28 / 0.05);
-
-  --radius: 2px;
-  --rail-w: 5.5rem;
-}
-
-.dark {
-  --paper: #090b0f;
-  --paper-raised: #0f131a;
-  --paper-sunk: #06080b;
-
-  --ink: #e8edf4;
-  --ink-2: #98a3b3;
-  --ink-3: #767f8d;
-
-  --rule: #1b212b;
-  --rule-strong: #2c3541;
-
-  --accent: #7d99ff;
-  --accent-ink: #06080b;
-  --accent-soft: rgb(125 153 255 / 0.11);
-  --accent-edge: rgb(125 153 255 / 0.34);
-
-  --live: #3ddc97;
-
-  --grid-minor: rgb(232 237 244 / 0.022);
-  --grid-major: rgb(232 237 244 / 0.042);
+  --live: #a3201b;
+  /* Unwoven thread: work that is not finished yet. */
+  --thread: #9b958a;
 }
 
 @theme inline {
@@ -71,12 +44,13 @@
   --color-accent-soft: var(--accent-soft);
   --color-accent-edge: var(--accent-edge);
   --color-live: var(--live);
+  --color-thread: var(--thread);
 
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-oranienbaum), "Times New Roman", serif;
+  --font-body: var(--font-spectral), Georgia, serif;
+  --font-caps: var(--font-spectral-sc), Georgia, serif;
 
-  --radius-sheet: 2px;
+  --radius-sheet: 6px;
 }
 
 /* ───────────────────────────────────────────────────────────
@@ -85,7 +59,7 @@
 
 html {
   scroll-behavior: smooth;
-  /* Clears the 4rem sticky nav. Sections must not also set scroll-margin —
+  /* Clears the 4rem sticky nav. Sections must not also set scroll-margin:
      scroll-padding and scroll-margin stack, which double the offset. */
   scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
@@ -94,7 +68,7 @@ html {
 body {
   background-color: var(--paper);
   color: var(--ink);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-spectral), Georgia, serif;
   font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -112,97 +86,171 @@ body {
 }
 
 @layer utilities {
-  /* The sheet the whole page is drawn on: 8px minor / 64px major. */
-  .sheet-grid {
-    background-image:
-      linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
-      linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px);
-    background-size:
-      64px 64px,
-      64px 64px,
-      8px 8px,
-      8px 8px;
-    background-position: -1px -1px;
+  /* The archival stock everything is recorded on: a faint laid-paper grain. */
+  .paper-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.29 0 0 0 0 0.24 0 0 0 0 0.16 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   }
 
-  /* Annotation type: every label, date, and measurement on the sheet. */
+  /* Dated small caps: every label, date, and annotation in the record. */
   .annot {
-    font-family: var(--font-mono), monospace;
-    font-size: 0.6875rem;
-    line-height: 1;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-family: var(--font-spectral-sc), Georgia, serif;
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    letter-spacing: 0.09em;
+    text-transform: lowercase;
     font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
   }
 
   .annot-sm {
-    font-family: var(--font-mono), monospace;
-    font-size: 0.625rem;
-    line-height: 1;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-family: var(--font-spectral-sc), Georgia, serif;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    letter-spacing: 0.09em;
+    text-transform: lowercase;
     font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
   }
 
+  /* Ledger display: tall, condensed, set in the ribbon's red by the caller. */
   .display-xl {
-    font-family: var(--font-display), sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.75rem, 12.5vw, 8.5rem);
-    line-height: 0.84;
-    letter-spacing: -0.045em;
-    text-transform: uppercase;
+    font-family: var(--font-oranienbaum), "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(3.5rem, 7.8vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: -0.012em;
   }
 
   .display-md {
-    font-family: var(--font-display), sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    line-height: 1;
-    letter-spacing: -0.03em;
+    font-family: var(--font-oranienbaum), "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+  }
+
+  /* The lead object's name: between section and hero scale. Declared after
+     display-md so it wins when both are set. */
+  .display-lead {
+    font-size: clamp(2.25rem, 5.2vw, 4.75rem);
+    line-height: 0.92;
   }
 
   .display-sm {
-    font-family: var(--font-display), sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.25rem, 2.4vw, 1.625rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-family: var(--font-oranienbaum), "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(1.625rem, 2.6vw, 2.125rem);
+    line-height: 1.05;
   }
 
   .prose-sheet {
     font-size: 1.0625rem;
-    line-height: 1.75;
+    line-height: 1.7;
     color: var(--ink-2);
     text-wrap: pretty;
   }
 
-  /* Corner ticks — the crop marks on a drawing plate. */
-  .plate::before,
-  .plate::after {
+  /* Silk ribbon: a woven sheen across its width, darker toward the edges. */
+  .silk {
+    background: linear-gradient(
+      90deg,
+      #7e1814 0%,
+      var(--accent) 32%,
+      #c0392f 52%,
+      var(--accent) 70%,
+      #7e1814 100%
+    );
+  }
+
+  /* A record card: the red bookmark tab marks every catalogued object. */
+  .plate::before {
     content: "";
     position: absolute;
-    width: 9px;
-    height: 9px;
-    pointer-events: none;
-  }
-  .plate::before {
     top: -1px;
-    left: -1px;
-    border-top: 1px solid var(--rule-strong);
-    border-left: 1px solid var(--rule-strong);
+    left: 18px;
+    width: 14px;
+    height: 26px;
+    /* Work still in progress sets --tab to thread. */
+    background: var(--tab, var(--accent));
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%);
+    pointer-events: none;
+    z-index: 1;
   }
-  .plate::after {
-    right: -1px;
-    bottom: -1px;
-    border-right: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule-strong);
+
+  /* The swallow-tail bookmark that heads every section. */
+  .bookmark {
+    display: inline-block;
+    flex: none;
+    width: 0.5em;
+    height: 0.95em;
+    background: var(--accent);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+  }
+
+  /* Tag-shaped actions with a notched end, like a luggage or archive tag. */
+  .tag {
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+    padding-right: 1.75rem !important;
+  }
+
+  .tag-outline {
+    position: relative;
+    isolation: isolate;
+    background: var(--rule-strong);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+    padding-right: 1.75rem !important;
+  }
+  .tag-outline::before {
+    content: "";
+    position: absolute;
+    inset: 1.5px;
+    z-index: -1;
+    background: var(--paper);
+    clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 50%, calc(100% - 11px) 100%, 0 100%);
+    transition: background-color 0.2s ease;
+  }
+  .tag-outline:hover::before {
+    background: var(--paper-raised);
+  }
+
+  /* Archival photo corners holding a mounted print. */
+  .photo-corners {
+    padding: 5px;
+    background:
+      linear-gradient(135deg, var(--rule-strong) 0 11px, transparent 11px) top left / 16px 16px no-repeat,
+      linear-gradient(225deg, var(--rule-strong) 0 11px, transparent 11px) top right / 16px 16px no-repeat,
+      linear-gradient(45deg, var(--rule-strong) 0 11px, transparent 11px) bottom left / 16px 16px no-repeat,
+      linear-gradient(315deg, var(--rule-strong) 0 11px, transparent 11px) bottom right / 16px 16px no-repeat;
+  }
+
+  /* A print mounted on the page: it sits on the paper, so it casts a little. */
+  .mounted {
+    box-shadow:
+      0 1px 2px rgb(42 36 28 / 0.12),
+      0 10px 22px -14px rgb(42 36 28 / 0.45);
+  }
+
+  /* A hairline with a diamond at its centre: the ledger's section ornament. */
+  .ornament-rule {
+    position: relative;
+    height: 1px;
+    background: var(--accent-edge);
+  }
+  .ornament-rule::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 }
 
 /* ───────────────────────────────────────────────────────────
-   Motion — one orchestrated load, quiet reveals after.
+   Motion: one orchestrated load, the ribbon drawn once,
+   quiet reveals after.
    ─────────────────────────────────────────────────────────── */
 
 @keyframes rise {
@@ -234,6 +282,15 @@ body {
   }
 }
 
+@keyframes ribbon {
+  from {
+    clip-path: inset(-12px 100% -12px -12px);
+  }
+  to {
+    clip-path: inset(-12px -12px -12px -12px);
+  }
+}
+
 .load-rise {
   opacity: 0;
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -253,6 +310,22 @@ body {
   animation-delay: var(--d, 0ms);
 }
 
+/* The custody line draws itself once, left to right. A clip, not a stroke
+   dash: dashes measured by pathLength break under non-scaling-stroke. */
+.ribbon-draw {
+  animation: ribbon 1.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Wide screens: each journey node arrives as the drawn ribbon reaches it. */
+@media (min-width: 64rem) {
+  .node-arrive {
+    opacity: 0;
+    animation: fade 0.35s ease forwards;
+    animation-delay: var(--n, 0ms);
+  }
+}
+
 .reveal {
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
@@ -260,7 +333,7 @@ body {
   transition-delay: var(--d, 0ms);
 }
 
-/* Only hide when scripting is confirmed live — otherwise the observer that
+/* Only hide when scripting is confirmed live; otherwise the observer that
    reveals it would never run and the content would be lost for good. */
 html[data-js] .reveal:not([data-shown="true"]) {
   opacity: 0;
@@ -278,6 +351,15 @@ html[data-js] .reveal:not([data-shown="true"]) {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+
+  .ribbon-draw {
+    animation: none;
+  }
+
+  .node-arrive {
+    animation: none;
+    opacity: 1;
   }
 
   html[data-js] .reveal:not([data-shown="true"]) {
@@ -299,11 +381,11 @@ html[data-js] .reveal:not([data-shown="true"]) {
 }
 
 /* ───────────────────────────────────────────────────────────
-   Print — the sheet should survive Cmd-P.
+   Print: the record should survive Cmd-P.
    ─────────────────────────────────────────────────────────── */
 
 @media print {
-  .sheet-grid,
+  .paper-grain,
   [data-print="hide"] {
     display: none !important;
     background-image: none !important;

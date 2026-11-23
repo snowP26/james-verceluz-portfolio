@@ -43,6 +43,10 @@ const MAP = {
   Cloudflare: "cloudflare",
   ExpressJS: "expressjs",
   Laravel: "laravel",
+  AWS: "aws",
+  // "linux" is a ~120KB illustration; it renders as text only.
+  Bash: "bash",
+  Vitest: "vitest",
 };
 
 const src = fs.readFileSync(SRC, "utf8");
@@ -66,7 +70,8 @@ function extract(key, variant) {
     if (c === "'") break;
     out += c;
   }
-  return out || null;
+  // An SVG longer than the scan window comes back truncated; never emit one.
+  return out.endsWith("</svg>") ? out : null;
 }
 
 /** Strip fixed dimensions so the icon scales with its box. */

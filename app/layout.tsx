@@ -1,29 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import { Oranienbaum, Spectral, Spectral_SC } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./components/theme-provider";
 import { CONTACT, PROFILE } from "@/lib/data";
 import { Analytics } from "@vercel/analytics/next"
 
-/** Display — industrial grotesque, set tight and uppercase for the plate lettering. */
-const archivo = Archivo({
+/** Display: a condensed ledger serif for the name and every heading. */
+const oranienbaum = Oranienbaum({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  weight: "400",
+  variable: "--font-oranienbaum",
   display: "swap",
 });
 
-/** Body — humanist counterweight to the display face. */
-const instrument = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-/** Utility — every annotation, date, and measurement on the sheet. */
-const plexMono = IBM_Plex_Mono({
+/** Text: a screen-first serif for reading. */
+const spectral = Spectral({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
+  variable: "--font-spectral",
+  display: "swap",
+});
+
+/** Dated small caps: labels, dates, and annotations in the record. */
+const spectralSC = Spectral_SC({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-spectral-sc",
   display: "swap",
 });
 
@@ -75,10 +76,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f7f8" },
-    { media: "(prefers-color-scheme: dark)", color: "#090b0f" },
-  ],
+  themeColor: "#ece3cf",
 };
 
 const personJsonLd = {
@@ -118,11 +116,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} font-body antialiased`}
+        className={`${oranienbaum.variable} ${spectral.variable} ${spectralSC.variable} font-body antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <a
+            href="#main"
+            className="annot sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent focus:px-4 focus:py-3 focus:text-accent-ink"
+          >
+            Skip to content
+          </a>
           {children}
-        </ThemeProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

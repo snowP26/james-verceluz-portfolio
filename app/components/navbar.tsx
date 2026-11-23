@@ -1,14 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { ArrowDownToLine, Menu, X } from "lucide-react";
-import { ModeToggle } from "./mode-switch";
-import { PROFILE, SECTIONS } from "@/lib/data";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { PROFILE, RESUME_PATH, SECTIONS } from "@/lib/data";
 
 export function Navbar({ activeId }: { activeId: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -17,28 +17,41 @@ export function Navbar({ activeId }: { activeId: string }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // The menu is a full-screen overlay; the page behind it must not scroll.
+  // Native modal: focus trap, Esc, and focus return to the trigger come free.
+  useEffect(() => {
+    const menu = menuRef.current;
+    if (!menu) return;
+    if (menuOpen && !menu.open) {
+      menu.showModal();
+      closeRef.current?.focus();
+    } else if (!menuOpen && menu.open) {
+      menu.close();
+    }
+  }, [menuOpen]);
+
+  // The menu covers the page; the page behind it must not scroll.
   useEffect(() => {
     if (!menuOpen) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-
     return () => {
       document.body.style.overflow = previous;
-      window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen]);
+
+  // The menu is hidden at xl; never leave an invisible modal holding the page.
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 80rem)");
+    const onChange = () => wide.matches && setMenuOpen(false);
+    wide.addEventListener("change", onChange);
+    return () => wide.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <>
       <header
         data-print="hide"
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        className={`sticky top-0 z-50 border-b transition-colors duration-300 lg:pl-18 ${
           scrolled
             ? "border-rule bg-paper/85 backdrop-blur-md"
             : "border-transparent bg-transparent"
@@ -48,10 +61,10 @@ export function Navbar({ activeId }: { activeId: string }) {
           <a
             href="#index"
             className="flex shrink-0 items-center gap-2.5"
-            aria-label={`${PROFILE.shortName} — back to top`}
+            aria-label={`${PROFILE.shortName}, back to top`}
           >
-            <span aria-hidden className="block h-3 w-px bg-accent" />
-            <span className="font-display text-[0.8125rem] font-extrabold uppercase leading-none tracking-[-0.02em] text-ink">
+            <span aria-hidden className="bookmark self-start text-[1.375rem]" />
+            <span className="font-display text-xl leading-none text-accent">
               {PROFILE.shortName}
             </span>
           </a>
@@ -65,7 +78,7 @@ export function Navbar({ activeId }: { activeId: string }) {
                     <a
                       href={`#${section.id}`}
                       aria-current={isActive ? "true" : undefined}
-                      className={`annot-sm block px-3 py-2 transition-colors ${
+                      className={`annot-sm block px-3 py-2.5 transition-colors ${
                         isActive
                           ? "text-accent"
                           : "text-ink-3 hover:text-ink"
@@ -80,18 +93,23 @@ export function Navbar({ activeId }: { activeId: string }) {
           </nav>
 
           <div className="ml-auto flex items-center gap-2 xl:ml-4">
-            <Link
-              href="/resume"
-              className="annot-sm hidden items-center gap-2 border border-rule px-3.5 py-2.5 text-ink-2 transition-colors hover:border-accent-edge hover:text-accent sm:inline-flex"
+            <a
+              href={RESUME_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="annot-sm tag-outline group inline-flex h-10 items-center gap-2 pl-3.5 text-ink transition-colors hover:text-accent"
             >
-              <ArrowDownToLine className="size-3.5" strokeWidth={1.75} />
               Resumé
-            </Link>
-            <ModeToggle />
+              <ArrowUpRight
+                className="size-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                strokeWidth={1.75}
+              />
+            </a>
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
+              aria-haspopup="dialog"
               aria-expanded={menuOpen}
               className="flex size-9 items-center justify-center border border-rule text-ink-2 transition-colors hover:text-ink xl:hidden"
             >
@@ -101,64 +119,69 @@ export function Navbar({ activeId }: { activeId: string }) {
         </div>
       </header>
 
-      {/* Contents page — the numbering is the point. */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-[60] bg-paper xl:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
-        >
-          <div className="sheet-grid absolute inset-0 opacity-60" aria-hidden />
-          <div className="relative flex h-full flex-col">
-            <div className="flex h-16 items-center border-b border-rule px-5 sm:px-8">
-              <span className="annot text-ink-3">Contents</span>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                aria-label="Close menu"
-                className="ml-auto flex size-9 items-center justify-center border border-rule text-ink-2"
-              >
-                <X className="size-4" strokeWidth={1.75} />
-              </button>
-            </div>
-
-            <nav className="flex-1 overflow-y-auto px-5 py-4 sm:px-8">
-              <ul>
-                {SECTIONS.map((section) => (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-baseline gap-5 border-b border-rule py-5"
-                    >
-                      <span
-                        className={`annot-sm tabular-nums ${
-                          section.id === activeId ? "text-accent" : "text-ink-3"
-                        }`}
-                      >
-                        {section.index}
-                      </span>
-                      <span className="display-sm text-ink">
-                        {section.label}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/resume"
-                onClick={() => setMenuOpen(false)}
-                className="annot mt-8 flex items-center justify-center gap-2.5 bg-accent px-5 py-4 text-accent-ink"
-              >
-                <ArrowDownToLine className="size-4" strokeWidth={1.75} />
-                Resumé
-              </Link>
-            </nav>
+      {/* Contents page: the numbering is the point. */}
+      <dialog
+        ref={menuRef}
+        aria-label="Menu"
+        onClose={() => setMenuOpen(false)}
+        className="m-0 h-dvh max-h-none w-full max-w-none bg-paper p-0 text-ink backdrop:bg-transparent xl:hidden"
+      >
+        <div className="paper-grain absolute inset-0 opacity-60" aria-hidden />
+        <div className="relative flex h-full flex-col">
+          <div className="flex h-16 items-center gap-2 border-b border-rule px-5 sm:px-8">
+            <span className="annot text-ink-3">Contents</span>
+            <button
+              ref={closeRef}
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="ml-auto flex size-9 items-center justify-center border border-rule text-ink-2"
+            >
+              <X className="size-4" strokeWidth={1.75} />
+            </button>
           </div>
+
+          <nav aria-label="Sections" className="flex-1 overflow-y-auto px-5 py-4 sm:px-8">
+            <ul>
+              {SECTIONS.map((section) => (
+                <li key={section.id}>
+                  <a
+                    href={`#${section.id}`}
+                    onClick={() => setMenuOpen(false)}
+                    aria-current={section.id === activeId ? "true" : undefined}
+                    className="flex items-center gap-4 border-b border-rule py-5"
+                  >
+                    <span
+                      aria-hidden
+                      className={`bookmark text-2xl ${
+                        section.id === activeId ? "" : "opacity-0"
+                      }`}
+                    />
+                    <span
+                      className={`display-sm ${
+                        section.id === activeId ? "text-accent" : "text-ink"
+                      }`}
+                    >
+                      {section.label}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={RESUME_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="annot tag mt-8 flex min-h-12 items-center justify-center gap-2.5 bg-accent px-5 py-3 text-accent-ink"
+            >
+              Resumé (PDF)
+              <ArrowUpRight className="size-4" strokeWidth={1.75} />
+            </a>
+          </nav>
         </div>
-      )}
+      </dialog>
     </>
   );
 }

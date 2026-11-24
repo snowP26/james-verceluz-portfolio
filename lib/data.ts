@@ -159,7 +159,7 @@ export const PROJECTS: Project[] = [
       "Drew adoption interest from a local LGU seeking a tailored deployment; co-authored the accompanying capstone paper.",
     ],
     stack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
-    image: "/projects/kilos.png",
+    image: "/projects/kilos.webp",
     imageAlt:
       "KILOS home screen for a youth official, with recent community feedback and an events calendar",
     github: "https://github.com/snowP26/KILOS-Capstone",
@@ -191,7 +191,7 @@ export const PROJECTS: Project[] = [
       "Cloudflare",
       "Claude Code",
     ],
-    image: "/projects/Entitled.png",
+    image: "/projects/entitled.webp",
     imageAlt:
       "Entitled landing page reading Name the track. Beat your friends., with Create Room and Join with code buttons",
     github: null,

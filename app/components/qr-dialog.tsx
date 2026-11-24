@@ -35,27 +35,27 @@ export function QRDialog({ children, triggerClassName }: QRDialogProps) {
           // Clicks land on the dialog element itself only outside the panel.
           if (event.target === event.currentTarget) close();
         }}
-        className="m-auto border border-rule bg-paper-raised p-0 text-ink backdrop:bg-ink/45 backdrop:backdrop-blur-sm"
+        className="m-auto rounded-2xl border border-line bg-surface p-0 text-ink shadow-pop backdrop:bg-black/50"
       >
-        <div className="plate relative w-[min(20rem,88vw)] p-6">
+        <div className="relative w-[min(20rem,88vw)] p-6">
           <div className="mb-5 flex items-start justify-between gap-6">
             <div>
-              <p className="annot-sm text-ink-3">Scan to chat</p>
-              <h2 id="qr-dialog-title" className="display-sm mt-1.5 text-ink">
+              <h2 id="qr-dialog-title" className="text-lg font-semibold tracking-tight text-ink">
                 Viber
               </h2>
+              <p className="mt-0.5 text-sm text-ink-3">Scan to chat</p>
             </div>
             <button
               type="button"
               onClick={close}
               aria-label="Close"
-              className="-m-1.5 p-1.5 text-ink-3 transition-colors hover:text-ink"
+              className="-m-2 flex size-9 items-center justify-center rounded-lg text-ink-3 transition-colors hover:bg-surface-2 hover:text-ink"
             >
               <X className="size-4" />
             </button>
           </div>
 
-          <div className="border border-rule bg-white p-4">
+          <div className="rounded-xl border border-line bg-white p-4">
             <Image
               src="/viber-qr.svg"
               alt="Viber QR code for James Verceluz"
@@ -65,12 +65,12 @@ export function QRDialog({ children, triggerClassName }: QRDialogProps) {
             />
           </div>
 
-          <p className="annot-sm mt-5 text-center text-ink-3">
+          <p className="mt-4 text-center text-sm text-ink-3">
             Open Viber, then scan
           </p>
           <a
             href={CONTACT.viber}
-            className="annot mt-4 flex min-h-11 items-center justify-center border border-rule text-ink-2 transition-colors hover:border-accent-edge hover:text-accent"
+            className="mt-4 flex h-10 items-center justify-center rounded-lg border border-line-strong text-sm font-medium text-ink transition-colors hover:bg-surface-2"
           >
             On this phone? Open in Viber
           </a>

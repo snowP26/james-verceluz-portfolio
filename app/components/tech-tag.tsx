@@ -1,40 +1,45 @@
 import { TECH_ICONS } from "@/lib/tech-icons.generated";
 
-/**
- * A stack tag. Renders the brand mark when one exists and falls back to the
- * label alone otherwise — a missing icon should never leave a gap or a
- * placeholder box. The site is light only, so only the light mark is used.
- */
-export function TechTag({ name }: { name: string }) {
+/** The brand mark, with its dark variant when the icon set ships one. */
+function Mark({ name, size }: { name: string; size: string }) {
   const icon = TECH_ICONS[name];
-
+  if (!icon) return null;
   return (
-    <li className="inline-flex items-center gap-2 border border-rule px-2.5 py-1.5 font-caps text-xs text-ink-2">
-      {icon && (
+    <>
+      <span
+        aria-hidden
+        className={`mark-light block shrink-0 ${size}`}
+        dangerouslySetInnerHTML={{ __html: icon.light }}
+      />
+      {icon.dark && (
         <span
           aria-hidden
-          className="block size-3.5 shrink-0"
-          dangerouslySetInnerHTML={{ __html: icon.light }}
+          className={`mark-dark shrink-0 ${size}`}
+          dangerouslySetInnerHTML={{ __html: icon.dark }}
         />
       )}
+    </>
+  );
+}
+
+/**
+ * A stack tag. Renders the brand mark when one exists and the label alone
+ * otherwise; a missing icon never leaves a gap or a placeholder box.
+ */
+export function TechTag({ name }: { name: string }) {
+  return (
+    <li className="inline-flex h-7 items-center gap-1.5 rounded-full bg-surface-2 px-2.5 text-xs font-medium text-ink-2">
+      <Mark name={name} size="size-3.5" />
       {name}
     </li>
   );
 }
 
-/** Same mark, sized for the capabilities table where tags sit on their own. */
+/** Same mark, a size up, for the capabilities table where tags sit on their own. */
 export function TechChip({ name }: { name: string }) {
-  const icon = TECH_ICONS[name];
-
   return (
-    <span className="inline-flex items-center gap-2 border border-rule px-3 py-2 font-caps text-xs text-ink-2">
-      {icon && (
-        <span
-          aria-hidden
-          className="block size-4 shrink-0"
-          dangerouslySetInnerHTML={{ __html: icon.light }}
-        />
-      )}
+    <span className="inline-flex h-8 items-center gap-2 rounded-full border border-line bg-surface px-3 text-[0.8125rem] font-medium text-ink-2">
+      <Mark name={name} size="size-4" />
       {name}
     </span>
   );

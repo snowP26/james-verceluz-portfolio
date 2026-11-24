@@ -3,7 +3,49 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { PROFILE, RESUME_PATH, SECTIONS } from "@/lib/data";
+import { ThemeToggle } from "./theme-toggle";
 
+const NAV = SECTIONS.filter((s) => s.id !== "index");
+
+/** Desktop: the pinned column's section list. The active line grows and turns accent. */
+export function SectionNav({ activeId }: { activeId: string }) {
+  return (
+    <nav aria-label="Sections" data-print="hide">
+      <ul>
+        {NAV.map((section) => {
+          const active = section.id === activeId;
+          return (
+            <li key={section.id}>
+              <a
+                href={`#${section.id}`}
+                aria-current={active ? "true" : undefined}
+                className="group flex items-center gap-3 py-1.5 text-sm font-medium"
+              >
+                <span
+                  aria-hidden
+                  className={`h-px transition-[width,background-color] duration-300 ease-out ${
+                    active
+                      ? "w-14 bg-accent"
+                      : "w-6 bg-line-strong group-hover:w-10 group-hover:bg-ink-3"
+                  }`}
+                />
+                <span
+                  className={`transition-colors ${
+                    active ? "text-ink" : "text-ink-3 group-hover:text-ink"
+                  }`}
+                >
+                  {section.label}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
+/** Below 1024px: a slim sticky bar with the resumé one tap away, and a full-screen menu. */
 export function Navbar({ activeId }: { activeId: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -39,9 +81,9 @@ export function Navbar({ activeId }: { activeId: string }) {
     };
   }, [menuOpen]);
 
-  // The menu is hidden at xl; never leave an invisible modal holding the page.
+  // The bar is hidden at lg; never leave an invisible modal holding the page.
   useEffect(() => {
-    const wide = window.matchMedia("(min-width: 80rem)");
+    const wide = window.matchMedia("(min-width: 64rem)");
     const onChange = () => wide.matches && setMenuOpen(false);
     wide.addEventListener("change", onChange);
     return () => wide.removeEventListener("change", onChange);
@@ -51,122 +93,85 @@ export function Navbar({ activeId }: { activeId: string }) {
     <>
       <header
         data-print="hide"
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 lg:pl-18 ${
-          scrolled
-            ? "border-rule bg-paper/85 backdrop-blur-md"
-            : "border-transparent bg-transparent"
+        className={`sticky top-0 z-50 border-b bg-bg transition-colors duration-200 lg:hidden ${
+          scrolled ? "border-line" : "border-transparent"
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-[76rem] items-center gap-6 px-5 sm:px-8">
+        <div className="mx-auto flex h-14 max-w-2xl items-center gap-3 px-5 sm:px-8">
           <a
             href="#index"
-            className="flex shrink-0 items-center gap-2.5"
+            className="text-[0.9375rem] font-semibold tracking-tight text-ink"
             aria-label={`${PROFILE.shortName}, back to top`}
           >
-            <span aria-hidden className="bookmark self-start text-[1.375rem]" />
-            <span className="font-display text-xl leading-none text-accent">
-              {PROFILE.shortName}
-            </span>
+            {PROFILE.shortName}
           </a>
 
-          <nav aria-label="Sections" className="ml-auto hidden xl:block">
-            <ul className="flex items-center gap-1">
-              {SECTIONS.filter((s) => s.id !== "index").map((section) => {
-                const isActive = section.id === activeId;
-                return (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`annot-sm block px-3 py-2.5 transition-colors ${
-                        isActive
-                          ? "text-accent"
-                          : "text-ink-3 hover:text-ink"
-                      }`}
-                    >
-                      {section.label}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          <div className="ml-auto flex items-center gap-2 xl:ml-4">
-            <a
-              href={RESUME_PATH}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="annot-sm tag-outline group inline-flex h-10 items-center gap-2 pl-3.5 text-ink transition-colors hover:text-accent"
-            >
-              Resumé
-              <ArrowUpRight
-                className="size-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                strokeWidth={1.75}
-              />
-            </a>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label="Open menu"
-              aria-haspopup="dialog"
-              aria-expanded={menuOpen}
-              className="flex size-9 items-center justify-center border border-rule text-ink-2 transition-colors hover:text-ink xl:hidden"
-            >
-              <Menu className="size-4" strokeWidth={1.75} />
-            </button>
-          </div>
+          <a
+            href={RESUME_PATH}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto inline-flex h-9 items-center gap-1.5 rounded-lg border border-line-strong bg-surface px-3 text-sm font-medium text-ink transition-colors hover:bg-surface-2"
+          >
+            Resumé
+            <ArrowUpRight aria-hidden className="size-3.5 text-ink-3" strokeWidth={2} />
+          </a>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+            aria-haspopup="dialog"
+            aria-expanded={menuOpen}
+            className="flex size-9 items-center justify-center rounded-lg text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+          >
+            <Menu className="size-5" strokeWidth={1.75} />
+          </button>
         </div>
       </header>
 
-      {/* Contents page: the numbering is the point. */}
       <dialog
         ref={menuRef}
         aria-label="Menu"
         onClose={() => setMenuOpen(false)}
-        className="m-0 h-dvh max-h-none w-full max-w-none bg-paper p-0 text-ink backdrop:bg-transparent xl:hidden"
+        className="m-0 h-dvh max-h-none w-full max-w-none bg-bg p-0 text-ink backdrop:bg-transparent lg:hidden"
       >
-        <div className="paper-grain absolute inset-0 opacity-60" aria-hidden />
-        <div className="relative flex h-full flex-col">
-          <div className="flex h-16 items-center gap-2 border-b border-rule px-5 sm:px-8">
-            <span className="annot text-ink-3">Contents</span>
+        <div className="mx-auto flex h-full max-w-2xl flex-col">
+          <div className="flex h-14 items-center gap-2 border-b border-line px-5 sm:px-8">
+            <span className="text-[0.9375rem] font-semibold tracking-tight">{PROFILE.shortName}</span>
             <button
               ref={closeRef}
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
-              className="ml-auto flex size-9 items-center justify-center border border-rule text-ink-2"
+              className="ml-auto flex size-9 items-center justify-center rounded-lg text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
             >
-              <X className="size-4" strokeWidth={1.75} />
+              <X className="size-5" strokeWidth={1.75} />
             </button>
           </div>
 
           <nav aria-label="Sections" className="flex-1 overflow-y-auto px-5 py-4 sm:px-8">
             <ul>
-              {SECTIONS.map((section) => (
-                <li key={section.id}>
-                  <a
-                    href={`#${section.id}`}
-                    onClick={() => setMenuOpen(false)}
-                    aria-current={section.id === activeId ? "true" : undefined}
-                    className="flex items-center gap-4 border-b border-rule py-5"
-                  >
-                    <span
-                      aria-hidden
-                      className={`bookmark text-2xl ${
-                        section.id === activeId ? "" : "opacity-0"
-                      }`}
-                    />
-                    <span
-                      className={`display-sm ${
-                        section.id === activeId ? "text-accent" : "text-ink"
-                      }`}
+              {NAV.map((section) => {
+                const active = section.id === activeId;
+                return (
+                  <li key={section.id}>
+                    <a
+                      href={`#${section.id}`}
+                      onClick={() => setMenuOpen(false)}
+                      aria-current={active ? "true" : undefined}
+                      className="flex items-center gap-2.5 border-b border-line py-4"
                     >
-                      {section.label}
-                    </span>
-                  </a>
-                </li>
-              ))}
+                      <span
+                        className={`text-2xl font-semibold tracking-tight ${
+                          active ? "text-ink" : "text-ink-3"
+                        }`}
+                      >
+                        {section.label}
+                      </span>
+                      {active && <span aria-hidden className="size-1.5 rounded-full bg-accent" />}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
 
             <a
@@ -174,11 +179,16 @@ export function Navbar({ activeId }: { activeId: string }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="annot tag mt-8 flex min-h-12 items-center justify-center gap-2.5 bg-accent px-5 py-3 text-accent-ink"
+              className="mt-8 flex h-12 items-center justify-center gap-2 rounded-lg bg-ink text-[0.9375rem] font-medium text-bg"
             >
               Resumé (PDF)
-              <ArrowUpRight className="size-4" strokeWidth={1.75} />
+              <ArrowUpRight aria-hidden className="size-4" strokeWidth={2} />
             </a>
+
+            <div className="mt-8 flex items-center justify-between gap-4">
+              <span className="text-sm text-ink-3">Theme</span>
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       </dialog>

@@ -52,7 +52,7 @@ export function CopyField({ value, href, name, className = "" }: CopyFieldProps)
     <div className={`min-w-0 ${className}`}>
       <div className="flex items-center gap-1">
         {href ? (
-          <a href={href} className={`${textClass} -my-2.5 py-2.5 transition-colors hover:text-accent`}>
+          <a href={href} className={`${textClass} -my-2.5 py-2.5 transition-colors hover:text-ink`}>
             {text}
           </a>
         ) : (
@@ -62,10 +62,10 @@ export function CopyField({ value, href, name, className = "" }: CopyFieldProps)
           type="button"
           onClick={copy}
           aria-label={`Copy ${name}`}
-          className="-my-3 flex size-11 shrink-0 items-center justify-center text-ink-3 transition-colors hover:text-accent"
+          className="-my-3 flex size-11 shrink-0 items-center justify-center rounded-lg text-ink-3 transition-colors hover:text-ink"
         >
           {state === "copied" ? (
-            <Check aria-hidden className="size-3.5 text-accent" strokeWidth={2.25} />
+            <Check aria-hidden className="size-3.5 text-ok" strokeWidth={2.25} />
           ) : (
             <Copy aria-hidden className="size-3.5" />
           )}

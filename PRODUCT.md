@@ -43,6 +43,7 @@ The headline everywhere (hero, page title, metadata, footer) is "Full-Stack Deve
 - Name: James Gabriel Verceluz (short form James Verceluz). Domain: jamesverceluz.dev. GitHub: snowP26.
 - Voice: first person, plain and factual. The code's own rule for the measures row is "what shipped and who used it, not vanity metrics".
 - Portrait: the illustrated avatar pair `public/james_verceluz_grin.png` and `public/james_verceluz_smile.png`.
+- Layout preference (standing, chosen 2026-11-24): the conventional developer-portfolio layout, a pinned profile column beside one scrolling column of work, executed at Linear / Vercel polish (brittanychiang.com as the layout reference). Redesigns refine this convention rather than roll new visual worlds, unless the owner asks for one.
 
 ## Evidence on Hand
 

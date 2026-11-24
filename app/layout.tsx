@@ -1,32 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Oranienbaum, Spectral, Spectral_SC } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { CONTACT, PROFILE } from "@/lib/data";
 import { Analytics } from "@vercel/analytics/next"
 
-/** Display: a condensed ledger serif for the name and every heading. */
-const oranienbaum = Oranienbaum({
+/** One family for everything: display, text and tabular dates. */
+const geist = Geist({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-oranienbaum",
+  variable: "--font-geist-sans",
   display: "swap",
 });
 
-/** Text: a screen-first serif for reading. */
-const spectral = Spectral({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-spectral",
-  display: "swap",
-});
-
-/** Dated small caps: labels, dates, and annotations in the record. */
-const spectralSC = Spectral_SC({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-spectral-sc",
-  display: "swap",
-});
+/** Runs before paint: a pinned theme applies with no flash; otherwise CSS follows the system. */
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -76,7 +62,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ece3cf",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0d" },
+  ],
 };
 
 const personJsonLd = {
@@ -111,16 +100,16 @@ export default function RootLayout({
         <Analytics />
         <script
           dangerouslySetInnerHTML={{
-            __html: `document.documentElement.setAttribute('data-js','')`,
+            __html: themeScript,
           }}
         />
       </head>
       <body
-        className={`${oranienbaum.variable} ${spectral.variable} ${spectralSC.variable} font-body antialiased`}
+        className={`${geist.variable} font-sans antialiased`}
       >
           <a
             href="#main"
-            className="annot sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent focus:px-4 focus:py-3 focus:text-accent-ink"
+            className="sr-only rounded-lg text-sm font-medium focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ink focus:px-4 focus:py-3 focus:text-bg"
           >
             Skip to content
           </a>

@@ -1,256 +1,229 @@
 ---
 name: James Verceluz Portfolio
-description: A provenance record on archival buff paper, with one red silk ribbon carrying the work from Naga City to its evidence.
+description: A conventional developer portfolio at Linear / Vercel polish, in cool neutrals with one blue, in light and dark.
 colors:
-  paper: "#ece3cf"
-  paper-raised: "#f5efe2"
-  paper-sunk: "#e2d7bf"
-  ink: "#2a241c"
-  ink-2: "#4b4235"
-  ink-3: "#61574a"
-  rule: "#cdbf9f"
-  rule-strong: "#8f826d"
-  ribbon-red: "#a3201b"
-  ribbon-selvedge: "#7e1814"
-  ribbon-sheen: "#cf5145"
-  accent-ink: "#f7f0e1"
-  thread: "#9b958a"
+  bg: "#fafafa"
+  surface: "#ffffff"
+  surface-2: "#f4f4f5"
+  ink: "#09090b"
+  ink-2: "#3f3f46"
+  ink-3: "#63636b"
+  line: "#e4e4e7"
+  line-strong: "#d4d4d8"
+  accent: "#2453d4"
+  ok: "#16a34a"
+  bg-dark: "#0b0b0d"
+  surface-dark: "#131316"
+  surface-2-dark: "#1b1b1f"
+  ink-dark: "#f4f4f5"
+  ink-2-dark: "#c4c4cc"
+  ink-3-dark: "#94949d"
+  line-dark: "#26262b"
+  line-strong-dark: "#3a3a41"
+  accent-dark: "#86a6ff"
+  ok-dark: "#4ade80"
 typography:
-  display-xl:
-    fontFamily: "Oranienbaum, Times New Roman, serif"
-    fontSize: "clamp(3.5rem, 7.8vw, 7rem)"
-    fontWeight: 400
-    lineHeight: 0.9
-    letterSpacing: "-0.012em"
-  display-lead:
-    fontFamily: "Oranienbaum, Times New Roman, serif"
-    fontSize: "clamp(2.25rem, 5.2vw, 4.75rem)"
-    fontWeight: 400
-    lineHeight: 0.92
-    letterSpacing: "-0.005em"
-  display-md:
-    fontFamily: "Oranienbaum, Times New Roman, serif"
-    fontSize: "clamp(2.25rem, 4.6vw, 3.5rem)"
-    fontWeight: 400
-    lineHeight: 0.98
-    letterSpacing: "-0.005em"
-  display-sm:
-    fontFamily: "Oranienbaum, Times New Roman, serif"
-    fontSize: "clamp(1.625rem, 2.6vw, 2.125rem)"
-    fontWeight: 400
-    lineHeight: 1.05
-  body:
-    fontFamily: "Spectral, Georgia, serif"
+  display:
+    fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2.875rem"
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: "-0.035em"
+  headline:
+    fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: "-0.025em"
+  title:
+    fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.0625rem"
+    fontWeight: 600
+    lineHeight: 1.375
+    letterSpacing: "-0.025em"
+  body:
+    fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.9375rem"
     fontWeight: 400
-    lineHeight: 1.7
+    lineHeight: 1.625
   label:
-    fontFamily: "Spectral SC, Georgia, serif"
+    fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: "0.09em"
-  label-sm:
-    fontFamily: "Spectral SC, Georgia, serif"
-    fontSize: "0.75rem"
-    fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: "0.09em"
+    lineHeight: 1.5
 rounded:
-  sheet: "6px"
-  node: "9999px"
+  sm: "4px"
+  md: "6px"
+  lg: "8px"
+  xl: "12px"
+  full: "9999px"
 spacing:
-  shell-gutter: "20px"
-  shell-gutter-sm: "32px"
-  section-y: "80px"
-  section-y-sm: "96px"
-  plate-pad: "24px"
-  plate-pad-lg: "40px"
-  plate-pad-lead: "48px"
+  xs: "6px"
+  sm: "12px"
+  md: "16px"
+  lg: "24px"
+  xl: "48px"
+  section: "80px"
 components:
-  tag-primary:
-    backgroundColor: "{colors.ribbon-red}"
-    textColor: "{colors.accent-ink}"
-    typography: "{typography.label}"
-    height: "48px"
-    padding: "12px 28px 12px 20px"
-  tag-outline:
-    backgroundColor: "{colors.paper}"
+  button-primary:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.bg}"
+    rounded: "{rounded.lg}"
+    padding: "0 16px"
+    height: "40px"
+  button-secondary:
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    height: "48px"
-    padding: "12px 28px 12px 20px"
-  tag-outline-hover:
-    backgroundColor: "{colors.paper-raised}"
-    textColor: "{colors.ribbon-red}"
-  plate:
-    backgroundColor: "{colors.paper-raised}"
-    textColor: "{colors.ink}"
-    padding: "24px"
-  plate-in-progress:
-    backgroundColor: "{colors.paper-raised}"
-    textColor: "{colors.ink}"
-  stack-tag:
-    backgroundColor: "{colors.paper}"
+    rounded: "{rounded.lg}"
+    padding: "0 16px"
+    height: "40px"
+  button-secondary-hover:
+    backgroundColor: "{colors.surface-2}"
+  tech-tag:
+    backgroundColor: "{colors.surface-2}"
     textColor: "{colors.ink-2}"
-    typography: "{typography.label-sm}"
-    padding: "6px 10px"
-  nav-link:
-    textColor: "{colors.ink-3}"
-    typography: "{typography.label-sm}"
-    padding: "10px 12px"
-  nav-link-active:
-    textColor: "{colors.ribbon-red}"
+    rounded: "{rounded.full}"
+    padding: "0 10px"
+    height: "28px"
+  project-row-hover:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.xl}"
+    padding: "16px"
+  theme-toggle:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.lg}"
+    padding: "2px"
 ---
 
 # Design System: James Verceluz Portfolio
 
 ## Overview
 
-**Creative North Star: "The Provenance Record"**
+**Creative North Star: "The Well-Kept Repo"**
 
-The site is an archival record, not a showcase. Buff paper with a faint laid grain is the stock; one red silk ribbon is the custody line that runs from Naga City to each client, folding at every project with its evidence attached. Everything that is not ribbon is ledger: taupe hairlines, small-caps dated annotations, circular ink stamps, mounted prints. Work that is shipped is drawn in solid red; work still in progress is drawn in unwoven gray thread. That one binary is the system's state vocabulary and it recurs everywhere a status can appear.
+A conventional developer portfolio, executed with Linear / Vercel polish: a pinned profile column beside a scrolling column of work, in near-white or near-black neutrals with one blue. Nothing is novel in structure; the quality is in the restraint, the spacing, and the contrast. It reads as a tool someone cared about, not a poster.
 
-The mood is quiet, tactile and exact. Density is moderate and reading-first: generous section padding, a 76rem shell, long Spectral paragraphs held to a readable measure. Red is not decoration; it marks custody, display type and every action, so its presence always means "this is real and you can follow it". The light theme is the only theme, by decision: a paper record has no night mode.
-
-The earlier cobalt blueprint look (Archivo, Plex Mono, grid, dark mode) was replaced, not extended; none of it carries over.
+One typeface (Geist) carries display, text and tabular dates. Hierarchy comes from weight, size and the three ink tiers, not from decoration. The site ships two themes (System, Light, Dark), both first-class. Product truth lives in PRODUCT.md and is not repeated here.
 
 **Key Characteristics:**
-- Buff paper ground with an SVG-noise grain; three paper tones for depth by tint, not by shadow.
-- One saturated hue, ribbon red, on display type, actions, bookmarks, the spine and the journey.
-- Gray thread (dashed) for every in-progress state; solid red for shipped.
-- Condensed ledger serif display (Oranienbaum) over Spectral text and Spectral SC small caps.
-- Swallow-tail bookmarks, notched tag buttons, circular stamps, photo corners: the object vocabulary of an archive.
-- One orchestrated load where the journey ribbon draws once; quiet reveals after.
+- Cool neutrals, one blue accent, one green for shipped.
+- Flat at rest; depth appears only as response to hover and in the one resume card.
+- One load animation, no scroll reveals.
+- Status is drawn, not worded: solid green dot is live, hollow ring is in progress.
+- Content width capped near 62ch; the page never feels dense.
 
 ## Colors
 
-A warm, low-chroma paper-and-ink palette with a single deep silk red and one neutral gray thread.
+Cool zinc neutrals in two themes, with a single blue for interaction and a single green for status. Light tokens sit on `:root`; dark tokens apply under `prefers-color-scheme: dark` unless `html[data-theme="light"]`, and always under `html[data-theme="dark"]`. Dark-theme values are the `-dark` keys in the frontmatter. Print forces light.
 
 ### Primary
-- **Ribbon Red** (#a3201b, `--accent`, also `--live`): the custody line. Display type (name, section titles, nav brand), every action (primary tag, links, focus ring), bookmarks, the spine ribbon, shipped nodes, and shipped stamps. Selection background.
-- **Ribbon Selvedge** (#7e1814): the darker woven edge of the silk. Used only in the `.silk` gradient and the journey ribbon's outer stroke.
-- **Ribbon Sheen** (#cf5145): the highlight of the silk on the journey ribbon (75% opacity, 1.5px). The `.silk` gradient peaks at #c0392f; this is a build-specific highlight of the same family.
+- **Link Blue** (#2453d4 light, #86a6ff dark): links, the active section-nav line, the active menu dot, focus rings, caret and selection tint. Contrast 5.9:1 or better on light, 7.3:1 or better on dark.
+
+### Secondary
+- **Shipped Green** (#16a34a light, #4ade80 dark): the solid dot meaning shipped or live, and the copy-confirmed check. Nothing else.
 
 ### Neutral
-- **Buff Paper** (#ece3cf, `--paper`): page ground, with the grain overlay in the mobile menu. Also the theme-color.
-- **Raised Paper** (#f5efe2, `--paper-raised`): plates, the journey panel, dropdowns, dialog. The lighter sheet laid on the ground.
-- **Sunk Paper** (#e2d7bf, `--paper-sunk`): the matte behind a mounted screenshot.
-- **Ink** (#2a241c): primary text and project names.
-- **Ink 2** (#4b4235): body prose and secondary text.
-- **Ink 3** (#61574a): the quietest text tier, labels and dates. It clears 4.5:1 on paper and carries real information, so no lighter tier exists.
-- **Ledger Rule** (#cdbf9f, `--rule`): hairlines, card borders, stack-tag borders.
-- **Strong Rule** (#8f826d, `--rule-strong`): section head top rule, tag-outline border, photo corners, dashed in-progress borders.
-- **Accent Ink** (#f7f0e1): text on red surfaces.
-- **Unwoven Thread** (#9b958a, `--thread`): the in-progress state: dashed journey segment and nodes, thread-gray plate tab, in-progress status node. Never used for text.
+- **Page** (#fafafa / #0b0b0d): page background and browser theme-color.
+- **Surface** (#ffffff / #131316): hovered work rows, the resume card, the Resumé button, toggle track.
+- **Surface 2** (#f4f4f5 / #1b1b1f): tech tags, hover fills, image placeholders, active toggle option.
+- **Ink** (#09090b / #f4f4f5): headings, primary text, the primary button fill.
+- **Ink 2** (#3f3f46 / #c4c4cc): body copy and secondary labels.
+- **Ink 3** (#63636b / #94949d): metadata, dates, quiet bullets. 5.4:1 or better on every light surface, 5.7:1 or better on dark.
+- **Line** (#e4e4e7 / #26262b) and **Line Strong** (#d4d4d8 / #3a3a41): section rules, card borders, inactive nav lines.
 
 ### Named Rules
-**The One Ribbon Rule.** Red marks custody and action only. If something is red it is either shipped work, display type, or something you can press. Decorative red does not exist.
+**The Status Vocabulary Rule.** A solid green dot means shipped or live and nothing else. A hollow ink-3 ring means in progress. "Open to work" and "Current" are plain text with no dot.
 
-**The Thread Rule.** In progress is dashed thread gray, shipped is solid ribbon red. Any new status-bearing element must pick one of the two; do not invent a third state color.
+**The One Blue Rule.** Blue appears only on links, the active nav mark, and focus. It is never a fill, a badge, or decoration.
 
-**The Ink Floor Rule.** No text tier is lighter than Ink 3 (#61574a) on paper, and annotation type is never below 0.75rem.
+**The Contrast Floor Rule.** The quietest text tier is ink-3 and it must hold its measured contrast on every surface it sits on. Never dim text with opacity.
 
 ## Typography
 
-**Display Font:** Oranienbaum (400, with Times New Roman, serif)
-**Body Font:** Spectral (400/500/600, with Georgia, serif)
-**Label Font:** Spectral SC (400/500/600, with Georgia, serif)
+**Display Font:** Geist (with ui-sans-serif, system-ui, sans-serif)
+**Body Font:** Geist (same family)
+**Label/Mono Font:** none; dates and counts use Geist with tabular numerals.
 
-**Character:** A tall, condensed ledger display serif paired with a screen-first reading serif, and its small-cap sibling for everything dated or catalogued. All three are serifs; the voice is archival, not editorial-fashion.
+**Character:** One neutral, precise grotesque used at a tight scale. Semibold with negative tracking for headings; regular with generous leading for reading.
 
 ### Hierarchy
-- **Display XL** (400, clamp 3.5rem to 7rem, 0.9): the name in the first viewport, set in ribbon red on two lines.
-- **Display Lead** (400, clamp 2.25rem to 4.75rem, 0.92): the lead project's name, one step below hero.
-- **Display MD** (400, clamp 2.25rem to 3.5rem, 0.98): section titles in ribbon red, project names in ink, contact statement.
-- **Display SM** (400, clamp 1.625rem to 2.125rem, 1.05): mobile menu entries and dialog titles.
-- **Body / prose-sheet** (400, 1.0625rem, 1.7, ink-2, `text-wrap: pretty`): paragraphs, held to roughly 32 to 42rem (`max-w-lg` to `max-w-2xl`).
-- **Label** (Spectral SC 500, 0.8125rem, 0.09em, lowercase rendered as small caps): `annot`, for dates, statuses, link captions, tag buttons.
-- **Label SM** (Spectral SC 500, 0.75rem, 0.09em): `annot-sm`, for nav, journey dates, rail labels, legends. This is the floor.
+- **Display** (600, 2.25rem rising to 2.625rem at sm and 2.875rem at xl, 1.04, -0.035em): the name in the profile column, once.
+- **Headline** (600, 1.25rem, -0.025em): section headings, each over a hairline rule. The mobile menu uses 1.5rem semibold links.
+- **Title** (600, 1.0625rem, snug): project names.
+- **Body** (400, 0.9375rem, relaxed leading, `text-pretty`, max 62ch): summaries and prose in ink-2.
+- **Label** (500, 0.8125rem to 0.875rem): nav items, metadata lines, tags (0.75rem). Tabular figures via the `nums` utility for dates, spans, counts.
 
 ### Named Rules
-**The Small-Caps Record Rule.** Every date, status, place and catalogue label is Spectral SC with lining tabular numerals, lowercased so the font renders true small caps. Do not use uppercase text-transform or letter-spaced sans labels.
+**The One Family Rule.** Geist only. No second display face, no mono accent for decoration.
 
-**The Red Display Rule.** Oranienbaum is set at weight 400 only and is red for page and section titles, ink for object names. It is never used for running text.
+**The Sentence Case Rule.** Labels are sentence case; no all-caps eyebrows or letter-spaced kickers.
 
 ## Layout
 
-A single 76rem shell (`max-w-[76rem]`, 20px gutters, 32px from sm up). Sections stack vertically with 80px (96px from sm) vertical padding; each opens with a section head. The first viewport is an asymmetric split: name and lead left, avatar mounted on an object-label card right, with the journey panel beneath.
+Below 1024px: a slim sticky 3.5rem bar (name, Resumé, menu) over one column, `max-w-2xl`, 20px gutters (32px at sm). At lg and up: an 80rem shell with a pinned, viewport-tall profile column (5fr) beside the scrolling column (7fr), 64px gap (96px at xl). The pinned column holds the name, the section nav, and the theme toggle; below lg the toggle moves to the foot of the page and the menu.
 
-Project plates are not a grid of equals. They stack one per row, each a two-column grid (text left, evidence right) at 1024px and up. The lead plate gives the evidence column more room (0.8fr / 1.4fr against 1fr / 1.1fr) and larger padding (48px against 40px). Below 1024px everything collapses to a single column.
-
-At 1024px and up a fixed 72px left margin carries the spine; the navbar and journey panel offset for it (`pl-18`, `pl-14`). The horizontal section nav appears at 1280px; below that a full-screen contents dialog opens from a menu button. The journey is a six-column wave at 1024px and up and a vertical spine on narrow screens. `scroll-padding-top` is 5rem; sections never also set scroll-margin.
-
-Spacing is Tailwind's 4px scale: gaps of 6 to 12 (24 to 48px) within plates, 10 and 14 (40 and 56px) below section heads, hairline-separated lists at py-3 to py-6 rhythm.
+Sections are separated by top padding (5rem, 6rem at lg), not by boxes. Work rows are inset 16px with a negative margin so text aligns with the column while the hover surface bleeds outward. Project rows place the thumbnail at 12rem beside the text (sm), full width above it (lg, 1024-1279px, where the column is narrow), and 14rem beside it (xl). Definition-style rows use a 9rem label column from sm up. `scroll-padding-top` (4.5rem, 5rem at lg) clears the sticky bar; sections never add scroll-margin.
 
 ## Elevation & Depth
 
-Flat by default, tinted not shadowed. Depth is carried by three paper tones (ground, raised, sunk) and hairline borders. Shadows exist only where an object physically lies on the sheet: a mounted screenshot (`0 1px 2px rgb(42 36 28 / 0.12), 0 10px 22px -14px rgb(42 36 28 / 0.45)`), the silk ribbons (a soft drop-shadow lifting them off the page), and the email dropdown (`0 10px 30px -12px rgb(42 36 28 / 0.45)`). All shadows are soft, ink-tinted and offset downward; none are hard offset.
+Flat by default, with tonal layering (page, surface, surface-2) and hairline borders doing most of the work. Shadows are a response, not a resting state.
+
+### Shadow Vocabulary
+- **Lift** (`0 1px 2px rgb(9 9 11 / 0.04), 0 8px 24px -12px rgb(9 9 11 / 0.12)`; dark adds a 1px top inset highlight and a deeper black ambient): hovered work row at lg and up, and the resume card.
+- **Pop** (`0 1px 2px rgb(9 9 11 / 0.06), 0 16px 40px -16px rgb(9 9 11 / 0.28)`): reserved for dialogs such as the QR dialog.
 
 ### Named Rules
-**The Lies-On-The-Paper Rule.** Only things that are physically laid on the sheet (prints, ribbon, a floating menu) cast a shadow. Cards, tags, headers and stamps do not.
+**The Hover Lift Rule.** The hovered work row lifts (surface background plus Lift). Siblings dim only their screenshots to 0.4 opacity; text never dims.
 
 ## Shapes
 
-Mostly square-cornered ledger geometry: plates, tags, stack tags and buttons have no radius (`--radius-sheet` 6px exists in the theme but the shipped components lean on straight edges). The distinguishing silhouettes are clipped, not rounded: the swallow-tail bookmark (`polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)`) on section heads, plate tabs (14 x 26px at left 18px) and the spine ribbon's end; the notched tag (12px point on the right) for actions; the circular stamp. Journey and rail nodes are circles with a 2px border. Mounted prints sit in four photo corners over a 5px mat. Hairlines carry diamond ornaments (7px square rotated 45deg) at the page's closing rule.
+Soft, small radii; nothing sharp, nothing pill-shaped except tags. 4px focus-ring corners, 6px thumbnails, 8px (lg) for buttons, inputs and toggle, 12px for work rows and the resume card, full-round for tech tags and status dots. Borders are 1px in line or line-strong. Thumbnails are cropped screenshots (16:10, top-anchored) in a 1px line border.
 
 ## Components
 
-### Buttons (tag-shaped)
-Action buttons are archive tags with a notched right end, 48px minimum height, `annot` type.
-- **Primary (`tag`):** ribbon-red fill, accent-ink text, 12px/28px/12px/20px padding, 90% opacity on hover.
-- **Outline (`tag-outline`):** a 1.5px strong-rule border built by a paper-colored inner clip over a rule-strong fill, ink text; hover lightens the fill to raised paper and turns the text red. The navbar Resumé uses a 40px-high small variant.
-- **Focus:** global 2px ribbon-red outline, 3px offset, on every focusable element.
+### Buttons
+- **Shape:** 8px radius, 40px high (36px in the mobile bar, 48px in the menu).
+- **Primary:** ink fill with page-colored text, 16px horizontal padding; hover drops opacity to 0.85.
+- **Secondary:** surface fill, line-strong border, ink text; hover fills surface-2. An arrow-up-right icon in ink-3 marks external links.
+- **Focus:** 2px accent outline, 2px offset.
 
-### Plates (project cards)
-A catalogued object: raised paper, 1px rule border, red bookmark tab hanging from the top-left corner, a status mark and dated span, name, kind and role, a rotated stamp at the top right, the evidence print mounted in photo corners with a caption row of links beneath, then prose, a hairline-ruled list with 12px dashes, and stack tags. An in-progress plate swaps to a dashed strong-rule border and a thread-gray tab (`--tab`). The lead plate enlarges the name (`display-lead`) and stamp (112px against 96px).
+### Tech tags
+28px high pill, surface-2 fill, ink-2 text at 0.75rem medium, with the brand mark (14px) when one exists and text alone otherwise. Dark variants of marks swap with the theme.
 
-### Stamps
-A circular dealer's ink stamp: two rings, status arced over the top, year large in the middle, place arced beneath, rotated -9deg at 85% opacity, run through an SVG ink-absorption filter (displacement plus patchy alpha). Red when shipped, ink-2 when open. Hidden from assistive tech unless a `label` is given; project plates give one because the place is stated nowhere else.
+### Work row
+Thumbnail, a metadata line (status dot, label, span, place), a title that is a stretched link with an arrow nudging up-right on hover, role line, summary, bullet points in ink-3, stack tags, then live and source links with 44px touch height. Earlier work sits in a details disclosure.
 
-### Section heads
-A strong-rule top hairline, a 16 x 48px red swallow-tail bookmark hanging from its left, the title in Display MD ribbon red indented 36px, and optional right-aligned `annot` meta (counts or status only). No numbers, no kickers.
+### Theme toggle
+A System / Light / Dark radio group of 32px icon cells in a bordered track; the checked cell takes surface-2 and ink. Choice persists in `localStorage.theme`; an inline script in the layout applies it before paint.
 
 ### Navigation
-- **Navbar:** sticky 64px; transparent at rest, 85% paper with blur and a rule once scrolled. Brand is a red bookmark plus the short name in Oranienbaum; links in `annot-sm` ink-3, active ribbon red with `aria-current`; Resumé as a small outline tag.
-- **Spine (Rail):** fixed left margin at 1024px and up. A 1px strong-rule thread runs the height; a silk ribbon unrolls with scroll progress and ends in a swallow-tail; a node sits at each section's real document position (red when reached, paper with strong border when not); the active section's label is set vertically in red beside its node.
-- **Mobile contents dialog:** full-screen paper with grain, Oranienbaum entries, a red bookmark beside the active entry, and a red tag for the resumé.
+- **Desktop section nav:** a short hairline plus a label per section. Inactive: 1.5rem line in line-strong, ink-3 label. Hover: line grows to 2.5rem. Active: line grows to 3.5rem in accent, label turns ink.
+- **Mobile:** sticky bar with a bottom border that appears after 8px of scroll; the menu is a native full-screen dialog with large semibold links, an accent dot on the active one, a full-width primary Resumé button, and the theme toggle.
 
-### The Journey (signature)
-A panel on raised paper with a red swallow-tail label read down its left margin. A wavy silk ribbon (selvedge, face, sheen strokes, drop-shadowed) runs through shipped stops as solid and continues as a dashed thread through in-progress ones. Each node is a dated, linked stop: `annot-sm` date and status, Oranienbaum title, short note. A legend maps solid to "shipped or live" and dashed to "in progress". The ribbon draws once left to right by clip-path over 1.6s; nodes fade in as the draw reaches them.
+### Journey timeline
+A vertical list of stops with 10px dots (solid green or hollow ring), a hairline connector, and right-aligned tabular dates; rows tint to surface-2 on hover.
 
-### Work ribbon
-Between project plates, one silk segment runs down into the next plate's tab, so the work section reads as a single custody line.
-
-### Stack tags
-Bordered 1px rule, small caps at 0.75rem, 14px brand mark when one exists; text only otherwise. No fill, no radius.
-
-### Menus, fields and dialogs
-- **Email chooser / QR dialog:** a raised-paper plate with the red tab, strong-rule border, small-caps heading, ink-3 list icons at 14px; the QR dialog uses a 45% ink backdrop with blur.
-- **Copy field:** text link plus a 44px icon button, ink-3 turning red on hover, check mark in red on success.
+### Resume card
+At every width /resume shows a bordered surface card with Open PDF (primary) and Download (secondary); there is no inline PDF viewer because its chrome cannot be themed.
 
 ### Motion
-One orchestrated load: `load-rise` (14px, 0.7s) and `load-fade` (0.8s) with staggered delays, `load-draw` (scaleX 0.9s) for rules, the journey ribbon's clip-path draw (1.6s, `cubic-bezier(0.65,0,0.35,1)`), and `node-arrive` (0.35s fade timed to the draw, 1024px and up). After load only `reveal` (18px rise, 0.7s, `cubic-bezier(0.22,1,0.36,1)`) on scroll. Content stays visible without script (`html[data-js]` gates hiding). `prefers-reduced-motion` removes all animation and transitions. Print hides `data-print="hide"` elements and the grain, and sets white ground.
+One load moment: `.settle` (opacity 0 to 1, 8px rise, 4px blur to none, 0.6s `cubic-bezier(0.16, 1, 0.3, 1)`, staggered by `--d`) on the profile column and the journey. No scroll reveals. State transitions are 200-300ms color, width or transform. Reduced motion collapses every animation and transition to 0.01ms and disables smooth scroll.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** mark every shipped, live or custody element in solid ribbon red (#a3201b) and every in-progress element in dashed thread gray (#9b958a).
-- **Do** set every date, status, place and label in Spectral SC at 0.75rem or larger, ink-3 or darker.
-- **Do** head each section with the ledger rule and red swallow-tail bookmark; titles in Oranienbaum red.
-- **Do** give actions the notched tag silhouette at 48px minimum height with a 2px ribbon-red focus ring.
-- **Do** carry depth by paper tone and hairline; shadow only what lies on the sheet.
-- **Do** pair every motion with a reduced-motion fallback and keep content visible without script.
+- **Do** use semantic classes (`bg-bg`, `bg-surface`, `text-ink-2/3`, `border-line`, `text-accent`), never raw hex, so both themes follow.
+- **Do** keep a pair of values for every new color token: light on `:root`, dark in both the media query block and `html[data-theme="dark"]`.
+- **Do** check ink-3 contrast on any new surface before using it for text.
+- **Do** keep touch targets at 44px for in-row links and copy buttons.
+- **Do** keep `data-print="hide"` on chrome that must not print.
 
 ### Don't:
-- **Don't** add a dark theme or dark-mode variants; the record is paper only.
-- **Don't** use red decoratively, or add a second saturated accent or a third status color.
-- **Don't** use sans-serif, mono, uppercase text-transform or Oranienbaum for running text.
-- **Don't** put hard offset shadows, rounded pills, or gradient text on this surface; the only gradient is the silk cross-width sheen.
-- **Don't** return to the hero-over-equal-card-grid composition; plates stack one per row and the lead plate is larger.
-- **Don't** describe or rely on the ribbon as photographic; it is vector (see below).
+- **Don't** use green for anything but shipped or live, or add dots to "Open to work" or "Current".
+- **Don't** use the blue as a fill, badge, or decoration.
+- **Don't** dim text with opacity; dim images only.
+- **Don't** add scroll-triggered reveals or a second entrance animation.
+- **Don't** add a second typeface, uppercase eyebrows, or resting shadows.
+- **Don't** embed an inline PDF viewer on /resume.
 
-### Known gap and drift (not canonized)
-- **Vector material, not photographed.** The ribbon is built from layered vector strokes (selvedge #7e1814, face #a3201b, sheen #cf5145, feDropShadow lift) and the spine uses the `.silk` gradient with a drop-shadow; stamps use an SVG ink filter; paper grain is an SVG noise tile at 0.18 alpha. The finish bar called for a photographed silk ribbon on aged paper; no image tool was available. A produced raster silk and paper material is the upgrade path. User-accepted at finish.
-- **Unused dark icon data.** `lib/tech-icons.generated.ts` still carries an `icon.dark` variant per mark; `tech-tag.tsx` renders only `icon.light`. Harmless until the generator script is next touched.
-- **Glass blur.** The scrolled navbar and the QR dialog backdrop use backdrop-blur. It is a build detail, not a system rule; do not extend it to new surfaces.
+Not canonized: `app/components/useIsVisible.tsx` is unused and predates this build; `public/projects/kilos.png`, `Entitled.png`, `groovy.png`, `groovy2.png`, `stadiops.png` are unreferenced source screenshots (shipped plates are the `.webp` crops); the dev-only Next.js indicator is not part of the design.

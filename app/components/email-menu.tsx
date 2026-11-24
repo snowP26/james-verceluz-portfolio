@@ -64,7 +64,7 @@ export function EmailMenu({ subject, children, triggerClassName = "", align = "l
   };
 
   const item =
-    "flex min-h-11 w-full items-center justify-between gap-6 px-4 text-left text-[0.9375rem] text-ink transition-colors hover:bg-accent-soft hover:text-accent";
+    "flex min-h-10 w-full items-center justify-between gap-6 rounded-md px-3 text-left text-sm text-ink transition-colors hover:bg-surface-2";
 
   return (
     <div ref={wrapRef} className="relative inline-block">
@@ -82,11 +82,11 @@ export function EmailMenu({ subject, children, triggerClassName = "", align = "l
       {open && (
         <div
           id={listId}
-          className={`plate absolute top-full z-30 mt-2 w-64 border border-rule-strong bg-paper-raised pb-2 pt-9 shadow-[0_10px_30px_-12px_rgb(42_36_28/0.45)] ${
+          className={`absolute top-full z-30 mt-2 w-60 rounded-xl border border-line bg-surface p-1.5 shadow-pop ${
             align === "right" ? "right-0" : "left-0"
           }`}
         >
-          <p className="annot-sm px-4 pb-2 text-ink-3">Write with</p>
+          <p className="px-3 pb-1 pt-1.5 text-xs font-medium text-ink-3">Write with</p>
           <ul>
             {options.map((option) => (
               <li key={option.label}>
@@ -105,11 +105,11 @@ export function EmailMenu({ subject, children, triggerClassName = "", align = "l
                 </a>
               </li>
             ))}
-            <li className="mt-1 border-t border-rule pt-1">
+            <li className="mt-1 border-t border-line pt-1">
               <button type="button" onClick={copyAddress} className={item}>
                 {copy === "copied" ? "Copied" : "Copy address"}
                 {copy === "copied" ? (
-                  <Check aria-hidden className="size-3.5 text-accent" strokeWidth={2.25} />
+                  <Check aria-hidden className="size-3.5 text-ok" strokeWidth={2.25} />
                 ) : (
                   <Copy aria-hidden className="size-3.5 text-ink-3" strokeWidth={1.75} />
                 )}
@@ -118,7 +118,7 @@ export function EmailMenu({ subject, children, triggerClassName = "", align = "l
           </ul>
           <p
             aria-live="polite"
-            className={copy === "failed" ? "px-4 pb-1 pt-1 text-xs leading-snug text-ink-3" : "sr-only"}
+            className={copy === "failed" ? "px-3 pb-1 pt-1 text-xs leading-snug text-ink-3" : "sr-only"}
           >
             {copy === "copied"
               ? `Copied ${to}`
